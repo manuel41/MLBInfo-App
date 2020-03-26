@@ -19,7 +19,7 @@ namespace MLBPlayersApp.Services
 
             var result = await httpClient.GetStringAsync($"{url}all_star_sw='{SeassonType}'&sort_order='name_asc'&season={Seasson}");
             var data = JsonConvert.DeserializeObject<TeamQuery>(result);
-            return data.TeamAllSeason.QueryResults.Teams;
+            return data?.TeamAllSeason?.QueryResults?.Teams;
 
         }
 
@@ -31,7 +31,7 @@ namespace MLBPlayersApp.Services
             HttpClient httpClient = new HttpClient();
             var result = await httpClient.GetStringAsync($"{uri}.search_player_all.bam?sport_code='mlb'&active_sw='{active}'&name_part='{search}%25'");
 
-            return JsonConvert.DeserializeObject<SearchQuery>(result).SearchPlayerAll.QueryResults;
+            return JsonConvert.DeserializeObject<SearchQuery>(result)?.SearchPlayerAll?.QueryResults;
         }
 
     }
