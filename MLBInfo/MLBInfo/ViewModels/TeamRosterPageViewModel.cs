@@ -23,26 +23,13 @@ namespace MLBInfo.ViewModels
         public TeamRosterPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) :base(navigationService, apiService, pagedialogservice)
         {
 
-            GetTeamInformationCommand = new DelegateCommand(async () =>
-            {
-                await GetRosterData();
-            });
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public async Task GetRosterData() {
+  
 
-            if (await this.HasInternet())
-            {
-                Rows = new ObservableCollection<Row>(await ApiService.GetRowData(Start_Seasson, End_Seasson, Team_ID));
-            }
-        
-        
-        }
-
-        public void Initialize(INavigationParameters parameters)
+        public async void Initialize(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("StarSeasson"))
             {
@@ -59,6 +46,12 @@ namespace MLBInfo.ViewModels
             {
                 Team_ID = parameters["LastName"].ToString();
             }
+            
+            if (await this.HasInternet())
+            {
+                Rows = new ObservableCollection<Row>(await ApiService.GetRowData(Start_Seasson, End_Seasson, Team_ID));
+            }
+
         }
     }
 }

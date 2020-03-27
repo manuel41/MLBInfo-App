@@ -8,7 +8,7 @@
              Title="Teams">
     <ContentPage.Content>
 
-        <ListView ItemsSource="{Binding Teams}" HasUnevenRows="True" SelectedItem="{Binding TeamSelected, Mode=TwoWay}">
+        <ListView ItemsSource="{Binding Teams}" HasUnevenRows="True" SelectedItem="{Binding TeamSelected, Mode=OneWay}">
             <ListView.Header>
                 <Grid>
                     <Grid.RowDefinitions>
