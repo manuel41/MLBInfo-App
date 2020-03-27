@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLBInfo.Android", "MLBInfo\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLBInfo.iOS", "MLBInfo\MLBInfo.iOS\MLBInfo.iOS.csproj", "{436C9078-60DB-4D0D-9C94-B0C6F1E916BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLBInfo", "MLBInfo\MLBInfo\MLBInfo.csproj", "{71C7B15D-9CCC-4D24-81B2-8494F180A50C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLBInfo", "MLBInfo\MLBInfo\MLBInfo.csproj", "{71C7B15D-9CCC-4D24-81B2-8494F180A50C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

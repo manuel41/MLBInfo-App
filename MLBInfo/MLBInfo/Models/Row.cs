@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace MLBInfo.Models
 {
-    public class Row
+    public class Row : INotifyPropertyChanged
     {
 
         [JsonProperty("name_first_last")]
@@ -76,6 +77,8 @@ namespace MLBInfo.Models
 
         [JsonProperty("active_sw")]
         public string ActiveSw { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 
     public class RowQueryResults

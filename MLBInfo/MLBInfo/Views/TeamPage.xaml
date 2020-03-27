@@ -7,7 +7,8 @@
              x:Class="MLBInfo.Views.TeamPage"
              Title="Teams">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Teams}" HasUnevenRows="True">
+
+        <ListView ItemsSource="{Binding Teams}" HasUnevenRows="True" SelectedItem="{Binding TeamSelected, Mode=TwoWay}">
             <ListView.Header>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -28,7 +29,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Vertical">
+                        <StackLayout>
                             <Label Text="{Binding NameAbbrev, StringFormat='Team: {0}'}" FontSize="Medium" TextColor="Black"/>
                             <Label Text="{Binding State, StringFormat='State: {0}'}"/>
                             <Label Text="{Binding Season, StringFormat='Season: {0}'}"/>
@@ -40,5 +41,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+       
     </ContentPage.Content>
 </ContentPage>

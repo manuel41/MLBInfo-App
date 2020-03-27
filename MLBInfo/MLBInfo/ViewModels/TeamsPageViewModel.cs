@@ -28,22 +28,20 @@ namespace MLBTeamsApp.ViewModels
 
         public string Entry { get; set; }
 
+        public Team teamSelected;
         public Team TeamSelected {
 
-            get {
-
-                return TeamSelected;
+            get 
+            {
+                return teamSelected;
             }
 
 
-            set {
-                TeamSelected = value;
-                if (TeamSelected == null)
-                {
-                    GetElementValues();
-                    
-                }
-            
+            set 
+            {
+                teamSelected = value;
+
+                if (TeamSelected != null) GetElementValues();
             }
         
         } 
@@ -76,12 +74,12 @@ namespace MLBTeamsApp.ViewModels
 
             }
         }
-        async Task GetElementValues() {
+       async Task GetElementValues() {
 
            var nav = new NavigationParameters();
            nav.Add("StarSeasson", TeamSelected.Season);
            int x = Convert.ToInt32(TeamSelected.Season) + 1;
-           nav.Add("EndSeasson", x);
+           nav.Add("EndSeasson", Convert.ToString(x));
            nav.Add("TeamID", TeamSelected.TeamId);
            await NavigationService.NavigateAsync(NavConstants.TeamRoster, nav);
 

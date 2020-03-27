@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MLBInfo.ViewModels
 {
-    public class TeamRosterPageViewModel : BaseViewModel, INotifyPropertyChanged
+    public class TeamRosterPageViewModel : BaseViewModel, INotifyPropertyChanged, IInitialize
     {
         public ObservableCollection<Row> Rows { get; set; }
         public string Start_Seasson { get; set; }
@@ -32,7 +32,7 @@ namespace MLBInfo.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        async Task GetRosterData() {
+        public async Task GetRosterData() {
 
             if (await this.HasInternet())
             {
