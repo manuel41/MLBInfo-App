@@ -33,7 +33,7 @@ namespace MLBPlayersApp.ViewModels
             set
             {
                 playerSelected = value;
-                //if (playerSelected != null) ViewPlayerInfo();
+                if (playerSelected != null) ViewPlayerInfo();
             }
         }
 

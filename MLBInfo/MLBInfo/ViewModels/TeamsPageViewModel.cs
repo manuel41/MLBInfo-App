@@ -40,7 +40,7 @@ namespace MLBTeamsApp.ViewModels
                 TeamSelected = value;
                 if (TeamSelected == null)
                 {
-                    //GetElementValues();
+                    GetElementValues();
                     
                 }
             
