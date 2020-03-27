@@ -12,5 +12,6 @@ namespace MLBApp
         public const string PlayerPage = "/PlayerPage";
         public const string PlayerInfoPage = "/PlayerInfoPage";
         public const string TeamRoster = "/TeamRosterPage";
+       
     }
 }

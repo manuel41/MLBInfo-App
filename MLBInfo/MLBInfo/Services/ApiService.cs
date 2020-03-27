@@ -43,5 +43,14 @@ namespace MLBPlayersApp.Services
             return JsonConvert.DeserializeObject<PlayerInfoResult>(result)?.PlayerInfo?.QueryResults?.PlayerData;
         }
 
+        public async Task<IList<Row>> GetRowData(string Startseason, string Endseason, string TeamId)
+        {
+            HttpClient httpClient = new HttpClient();
+
+            var result = await httpClient.GetStringAsync($"{url1}/json/named.roster_team_alltime.bam?start_season={Startseason}&end_season={Endseason}&team_id={TeamId}");
+            var data = JsonConvert.DeserializeObject<RowExample>(result);
+            return data.RowRosterTeamAlltime.RowQueryResults.Row;
+        }
+
     }
 }

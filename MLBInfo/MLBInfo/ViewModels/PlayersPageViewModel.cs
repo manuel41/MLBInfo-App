@@ -33,7 +33,7 @@ namespace MLBPlayersApp.ViewModels
             set
             {
                 playerSelected = value;
-                if (playerSelected != null) ViewPlayerInfo();
+                //if (playerSelected != null) ViewPlayerInfo();
             }
         }
 
@@ -43,7 +43,7 @@ namespace MLBPlayersApp.ViewModels
         public string SearchEntry { get; set; }
         public DelegateCommand SearchPlayerCommand { get; set; }
 
-        public PlayersPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, INavigationParameters navigationParameter) : base(navigationService, apiService, pagedialogservice, navigationParameter)
+        public PlayersPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
         {
             SearchPlayerCommand = new DelegateCommand(async() =>
             {
