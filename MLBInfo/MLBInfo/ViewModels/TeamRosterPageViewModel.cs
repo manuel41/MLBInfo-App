@@ -1,9 +1,11 @@
-﻿using MLBPlayersApp.Services;
+﻿using MLBInfo.Models;
+using MLBPlayersApp.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace MLBInfo.ViewModels
 {
     public class TeamRosterPageViewModel : BaseViewModel, INotifyPropertyChanged
     {
+        public ObservableCollection<Row> Rows { get; set; }
         public string Start_Seasson { get; set; }
         public string End_Seasson { get; set; }
         public string Team_ID { get; set; }
@@ -33,7 +36,7 @@ namespace MLBInfo.ViewModels
 
             if (await this.HasInternet())
             {
-
+                Rows = new ObservableCollection<Row>(await ApiService.GetRowData(Start_Seasson, End_Seasson, Team_ID));
             }
         
         

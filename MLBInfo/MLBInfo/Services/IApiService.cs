@@ -15,5 +15,6 @@ namespace MLBPlayersApp.Services
         Task<QueryResults> GetPlayersList(string search, string active);
 
         Task<PlayerData> GetPlayerData(string id);
+        Task<IList<Row>> GetRowData(string Startseason, string Endseason, string TeamId);
     }
 }
