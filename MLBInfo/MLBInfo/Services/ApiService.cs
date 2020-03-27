@@ -14,11 +14,11 @@ namespace MLBPlayersApp.Services
 {
     public class ApiService :Config, IApiService
     {
-        public async Task<IList<Team>> GetTeamsList(string SeassonType, string Seasson)
+        public async Task<IList<Team>> GetTeamsList(string seasonType, string season)
         {
             HttpClient httpClient = new HttpClient();
 
-            var result = await httpClient.GetStringAsync($"{url}all_star_sw='{SeassonType}'&sort_order='name_asc'&season={Seasson}");
+            var result = await httpClient.GetStringAsync($"{url}all_star_sw='{seasonType}'&sort_order='name_asc'&season={season}");
             var data = JsonConvert.DeserializeObject<TeamQuery>(result);
             return data?.TeamAllSeason?.QueryResults?.Teams;
 
@@ -43,11 +43,11 @@ namespace MLBPlayersApp.Services
             return JsonConvert.DeserializeObject<PlayerInfoResult>(result)?.PlayerInfo?.QueryResults?.PlayerData;
         }
 
-        public async Task<IList<Row>> GetRowData(string Startseason, string Endseason, string TeamId)
+        public async Task<IList<Row>> GetRowData(string startSeason, string endSeason, string teamId)
         {
             HttpClient httpClient = new HttpClient();
 
-            var result = await httpClient.GetStringAsync($"{url1}/json/named.roster_team_alltime.bam?start_season={Startseason}&end_season={Endseason}&team_id={TeamId}");
+            var result = await httpClient.GetStringAsync($"{url1}/json/named.roster_team_alltime.bam?start_season={startSeason}&end_season={endSeason}&team_id={teamId}");
             var data = JsonConvert.DeserializeObject<RowExample>(result);
             return data?.RowRosterTeamAlltime?.RowQueryResults?.Rows;
         }

@@ -41,12 +41,12 @@ namespace MLBTeamsApp.ViewModels
             {
                 teamSelected = value;
 
-                if (TeamSelected != null) GetElementValues();
+                if (teamSelected != null) GetElementValues();
             }
         
         } 
         public string SecondEntry { get; set; }
-        public bool IsActiveCheckBox { get; set; } = true;
+        public bool IsActiveCheckBox { get; set; }
         public string SearchEntry { get; set; }
         public DelegateCommand GetTeamInformationCommand { get; set; }
 

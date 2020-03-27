@@ -20,7 +20,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Entry Text="{Binding SecondEntry}" Placeholder="Seasson" HorizontalOptions="Start" WidthRequest="290" Grid.Column="0" Grid.Row="0"/>
+                    <Entry Text="{Binding SecondEntry}" Placeholder="Season" HorizontalOptions="Start" WidthRequest="290" Grid.Column="0" Grid.Row="0"/>
                     <Label Text="All/Regular?" VerticalOptions="Center" Grid.Column="1" Grid.Row="0"/>
                     <Button Text="Search" Command="{Binding GetTeamInformationCommand}" Grid.Column="0" Grid.Row="1"/>
                     <CheckBox IsChecked="{Binding IsActiveCheckBox}" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center"/>
