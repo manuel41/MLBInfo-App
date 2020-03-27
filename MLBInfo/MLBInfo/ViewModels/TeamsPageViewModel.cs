@@ -32,7 +32,7 @@ namespace MLBTeamsApp.ViewModels
         public string SearchEntry { get; set; }
         public DelegateCommand GetTeamInformationCommand { get; set; }
 
-        public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice):base(navigationService, apiService, pagedialogservice)
+        public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice,INavigationParameters navigationParameter) : base(navigationService, apiService, pagedialogservice, navigationParameter)
         {
             GetTeamInformationCommand = new DelegateCommand(async() =>
             {

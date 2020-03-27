@@ -7,9 +7,26 @@
              x:Class="MLBInfo.Views.TeamRosterPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <CollectionView ItemsSource="{Binding TeamRoster}"
+                           SelectedItem="{Binding TeamRosterSelected, Mode=TwoWay}">
+                
+                <CollectionView.Header>
+                    
+                    <Label Text="Team-Roster" HorizontalOptions="Center"/>
+                </CollectionView.Header>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Name, StringFormat='Name = {0}'}" VerticalOptions="Center"/>
+                            <Label Text="{Binding Team, StringFormat='Team = {0}'}" VerticalOptions="Center"/>
+                            <Label Text="{Binding Position, StringFormat='Position = {0}'}" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
