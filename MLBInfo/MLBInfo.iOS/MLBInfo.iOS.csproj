@@ -135,4 +135,7 @@
       <Name>MLBInfo</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\twitter_icon.png" />
+  </ItemGroup>
 </Project>
