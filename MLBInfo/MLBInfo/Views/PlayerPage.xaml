@@ -6,7 +6,8 @@
              mc:Ignorable="d"
              x:Class="MLBInfo.Views.PlayerPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Players}" HasUnevenRows="True">
+        <ListView ItemsSource="{Binding Players}" HasUnevenRows="True"
+                  SelectedItem="{Binding PlayerSelected, Mode=TwoWay}">
             <ListView.Header>
                 <Grid>
                     <Grid.RowDefinitions>

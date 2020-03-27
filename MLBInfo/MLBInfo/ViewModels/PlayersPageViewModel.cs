@@ -1,4 +1,5 @@
-﻿using MLBInfo.ViewModels;
+﻿using MLBApp;
+using MLBInfo.ViewModels;
 using MLBPlayersApp.Models;
 using MLBPlayersApp.Services;
 using Prism.Commands;
@@ -21,7 +22,20 @@ namespace MLBPlayersApp.ViewModels
     {
         public ObservableCollection<Player> Players { get; set; }
 
- 
+        public Player playerSelected;
+
+        public Player PlayerSelected
+        {
+            get
+            {
+                return playerSelected;
+            }
+            set
+            {
+                playerSelected = value;
+                if (playerSelected != null) ViewPlayerInfo();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -54,6 +68,13 @@ namespace MLBPlayersApp.ViewModels
                 }
 
             }
+        }
+
+        public async Task ViewPlayerInfo()
+        {
+            var nav = new NavigationParameters();
+            nav.Add("Id", playerSelected.PlayerId);
+            await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
         }
     }
 }

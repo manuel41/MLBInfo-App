@@ -1,10 +1,28 @@
-﻿using System;
+﻿using MLBInfo.Models;
+using MLBPlayersApp.Services;
+using Prism.Navigation;
+using Prism.Services;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace MLBInfo.ViewModels
 {
-    class PlayerInfoPageViewModel
+    public class PlayerInfoPageViewModel: BaseViewModel, INotifyPropertyChanged, IInitialize
     {
+        public PlayerData Player { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public PlayerInfoPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
+        {
+
+        }
+
+        public async void Initialize(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("Id")) Player = await ApiService.GetPlayerData(parameters["Id"].ToString());
+        }
     }
 }
