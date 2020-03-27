@@ -15,8 +15,8 @@ namespace MLBInfo.ViewModels
     public class TeamRosterPageViewModel : BaseViewModel, INotifyPropertyChanged, IInitialize
     {
         public ObservableCollection<Row> Rows { get; set; }
-        public string Start_Seasson { get; set; }
-        public string End_Seasson { get; set; }
+        public string Start_Season { get; set; }
+        public string End_Season { get; set; }
         public string Team_ID { get; set; }
 
         public DelegateCommand GetTeamInformationCommand { get; set; }
@@ -36,7 +36,7 @@ namespace MLBInfo.ViewModels
 
             if (await this.HasInternet())
             {
-                Rows = new ObservableCollection<Row>(await ApiService.GetRowData(Start_Seasson, End_Seasson, Team_ID));
+                Rows = new ObservableCollection<Row>(await ApiService.GetRowData(Start_Season, End_Season, Team_ID));
             }
         
         
@@ -44,15 +44,15 @@ namespace MLBInfo.ViewModels
 
         public void Initialize(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("StarSeasson"))
+            if (parameters.ContainsKey("StarSeason"))
             {
-                Start_Seasson = parameters["Name"].ToString();
+                Start_Season = parameters["Name"].ToString();
             }
 
 
-            if (parameters.ContainsKey("EndSeasson"))
+            if (parameters.ContainsKey("EndSeason"))
             {
-                End_Seasson = parameters["LastName"].ToString();
+                End_Season = parameters["LastName"].ToString();
             }
 
             if (parameters.ContainsKey("TeamID"))

@@ -77,9 +77,9 @@ namespace MLBTeamsApp.ViewModels
        async Task GetElementValues() {
 
            var nav = new NavigationParameters();
-           nav.Add("StarSeasson", TeamSelected.Season);
+           nav.Add("StarSeason", TeamSelected.Season);
            int x = Convert.ToInt32(TeamSelected.Season) + 1;
-           nav.Add("EndSeasson", Convert.ToString(x));
+           nav.Add("EndSeason", Convert.ToString(x));
            nav.Add("TeamID", TeamSelected.TeamId);
            await NavigationService.NavigateAsync(NavConstants.TeamRoster, nav);
 
