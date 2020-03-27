@@ -15,7 +15,7 @@ namespace MLBInfo.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public PlayerInfoPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
+        public PlayerInfoPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, INavigationParameters navigationParameter) : base(navigationService, apiService, pagedialogservice, navigationParameter)
         {
 
         }
