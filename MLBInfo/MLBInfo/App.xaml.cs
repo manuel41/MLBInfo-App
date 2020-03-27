@@ -39,6 +39,7 @@ namespace MLBInfo
             containerRegistry.RegisterForNavigation<TeamPage, TeamsPageViewModel>();
             containerRegistry.RegisterForNavigation<PlayerPage, PlayersPageViewModel>();
             containerRegistry.RegisterForNavigation<PlayerInfoPage, PlayerInfoPageViewModel>();
+            containerRegistry.RegisterForNavigation<TeamRosterPage, TeamRosterPageViewModel>();
 
         }
     }

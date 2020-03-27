@@ -40,7 +40,7 @@ namespace MLBTeamsApp.ViewModels
                 TeamSelected = value;
                 if (TeamSelected == null)
                 {
-                    GetElementValues();
+                    //GetElementValues();
                     
                 }
             
@@ -52,7 +52,7 @@ namespace MLBTeamsApp.ViewModels
         public string SearchEntry { get; set; }
         public DelegateCommand GetTeamInformationCommand { get; set; }
 
-        public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, INavigationParameters navigationParameter) : base(navigationService, apiService, pagedialogservice, navigationParameter)
+        public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
         {
             GetTeamInformationCommand = new DelegateCommand(async() =>
             {
@@ -78,11 +78,12 @@ namespace MLBTeamsApp.ViewModels
         }
         async Task GetElementValues() {
 
-           NavigationParameter.Add("StarSeasson", TeamSelected.Season);
+           var nav = new NavigationParameters();
+           nav.Add("StarSeasson", TeamSelected.Season);
            int x = Convert.ToInt32(TeamSelected.Season) + 1;
-           NavigationParameter.Add("EndSeasson", x);
-           NavigationParameter.Add("TeamID", TeamSelected.TeamId);
-           await NavigationService.NavigateAsync(NavConstants.TeamRoster, NavigationParameter);
+           nav.Add("EndSeasson", x);
+           nav.Add("TeamID", TeamSelected.TeamId);
+           await NavigationService.NavigateAsync(NavConstants.TeamRoster, nav);
 
         }                      
    }

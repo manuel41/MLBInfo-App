@@ -4,108 +4,109 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace MLBInfo.Models
-{  
-        public class Row
-        {
+{
+    public class Row
+    {
 
-            [JsonProperty("name_first_last")]
-            public string name_first_last { get; set; }
+        [JsonProperty("name_first_last")]
+        public string NameFirstLast { get; set; }
 
-            [JsonProperty("weight")]
-            public string weight { get; set; }
+        [JsonProperty("weight")]
+        public string Weight { get; set; }
 
-            [JsonProperty("primary_position")]
-            public string primary_position { get; set; }
+        [JsonProperty("primary_position")]
+        public string PrimaryPosition { get; set; }
 
-            [JsonProperty("birth_date")]
-            public DateTime birth_date { get; set; }
+        [JsonProperty("birth_date")]
+        public DateTime BirthDate { get; set; }
 
-            [JsonProperty("throws")]
-            public string throws { get; set; }
+        [JsonProperty("throws")]
+        public string Throws { get; set; }
 
-            [JsonProperty("stat_years")]
-            public string stat_years { get; set; }
+        [JsonProperty("stat_years")]
+        public string StatYears { get; set; }
 
-            [JsonProperty("height_inches")]
-            public string height_inches { get; set; }
+        [JsonProperty("height_inches")]
+        public string HeightInches { get; set; }
 
-            [JsonProperty("name_sort")]
-            public string name_sort { get; set; }
+        [JsonProperty("name_sort")]
+        public string NameSort { get; set; }
 
-            [JsonProperty("status_short")]
-            public string status_short { get; set; }
+        [JsonProperty("status_short")]
+        public string StatusShort { get; set; }
 
-            [JsonProperty("jersey_number")]
-            public string jersey_number { get; set; }
+        [JsonProperty("jersey_number")]
+        public string JerseyNumber { get; set; }
 
-            [JsonProperty("player_first_last_html")]
-            public string player_first_last_html { get; set; }
+        [JsonProperty("player_first_last_html")]
+        public string PlayerFirstLastHtml { get; set; }
 
-            [JsonProperty("bats")]
-            public string bats { get; set; }
+        [JsonProperty("bats")]
+        public string Bats { get; set; }
 
-            [JsonProperty("primary_position_cd")]
-            public string primary_position_cd { get; set; }
+        [JsonProperty("primary_position_cd")]
+        public string PrimaryPositionCd { get; set; }
 
-            [JsonProperty("position_desig")]
-            public string position_desig { get; set; }
+        [JsonProperty("position_desig")]
+        public string PositionDesig { get; set; }
 
-            [JsonProperty("forty_man_sw")]
-            public string forty_man_sw { get; set; }
+        [JsonProperty("forty_man_sw")]
+        public string FortyManSw { get; set; }
 
-            [JsonProperty("player_html")]
-            public string player_html { get; set; }
+        [JsonProperty("player_html")]
+        public string PlayerHtml { get; set; }
 
-            [JsonProperty("height_feet")]
-            public string height_feet { get; set; }
+        [JsonProperty("height_feet")]
+        public string HeightFeet { get; set; }
 
-            [JsonProperty("player_id")]
-            public string player_id { get; set; }
+        [JsonProperty("player_id")]
+        public string PlayerId { get; set; }
 
-            [JsonProperty("name_last_first")]
-            public string name_last_first { get; set; }
+        [JsonProperty("name_last_first")]
+        public string NameLastFirst { get; set; }
 
-            [JsonProperty("current_sw")]
-            public string current_sw { get; set; }
+        [JsonProperty("current_sw")]
+        public string CurrentSw { get; set; }
 
-            [JsonProperty("roster_years")]
-            public string roster_years { get; set; }
+        [JsonProperty("roster_years")]
+        public string RosterYears { get; set; }
 
-            [JsonProperty("team_id")]
-            public string team_id { get; set; }
+        [JsonProperty("team_id")]
+        public string TeamId { get; set; }
 
-            [JsonProperty("active_sw")]
-            public string active_sw { get; set; }
-        }
-
-        public class RowQueryResults
-        {
-
-            [JsonProperty("created")]
-            public DateTime created { get; set; }
-
-            [JsonProperty("totalSize")]
-            public string totalSize { get; set; }
-
-            [JsonProperty("row")]
-            public IList<Row> row { get; set; }
-        }
-
-        public class RowRosterTeamAlltime
-        {
-
-            [JsonProperty("copyRight")]
-            public string copyRight { get; set; }
-
-            [JsonProperty("queryResults")]
-            public RowQueryResults queryResults { get; set; }
-        }
-
-        public class RowExample
-        {
-
-            [JsonProperty("roster_team_alltime")]
-            public RowRosterTeamAlltime roster_team_alltime { get; set; }
-        }
+        [JsonProperty("active_sw")]
+        public string ActiveSw { get; set; }
     }
+
+    public class RowQueryResults
+    {
+
+        [JsonProperty("created")]
+        public DateTime Created { get; set; }
+
+        [JsonProperty("totalSize")]
+        public string TotalSize { get; set; }
+
+        [JsonProperty("row")]
+        public IList<Row> Row { get; set; }
+    }
+
+    public class RowRosterTeamAlltime
+    {
+
+        [JsonProperty("copyRight")]
+        public string CopyRight { get; set; }
+
+        [JsonProperty("queryResults")]
+        public RowQueryResults RowQueryResults { get; set; }
+    }
+
+    public class RowExample
+    {
+
+        [JsonProperty("roster_team_alltime")]
+        public RowRosterTeamAlltime RowRosterTeamAlltime { get; set; }
+    }
+
+}
 
