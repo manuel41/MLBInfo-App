@@ -1,5 +1,6 @@
 ﻿using System;
 using MLBApp;
+using MLBInfo.ViewModels;
 using MLBInfo.Views;
 using MLBPlayersApp.Models;
 using MLBPlayersApp.Services;
@@ -37,6 +38,7 @@ namespace MLBInfo
             containerRegistry.RegisterForNavigation<TabbedHomePage>();
             containerRegistry.RegisterForNavigation<TeamPage, TeamsPageViewModel>();
             containerRegistry.RegisterForNavigation<PlayerPage, PlayersPageViewModel>();
+            containerRegistry.RegisterForNavigation<PlayerInfoPage, PlayerInfoPageViewModel>();
 
         }
     }
