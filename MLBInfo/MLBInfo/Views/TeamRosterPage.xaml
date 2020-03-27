@@ -9,7 +9,6 @@
         <ListView ItemsSource="{Binding Row}">
 
             <ListView.Header>
-
                 <Label Text="Team-Roster" HorizontalOptions="Center"/>
             </ListView.Header>
 
