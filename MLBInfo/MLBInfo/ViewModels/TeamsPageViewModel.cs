@@ -27,12 +27,30 @@ namespace MLBTeamsApp.ViewModels
 
         public string Entry { get; set; }
 
+        public Team TeamSelected {
+
+            get {
+
+                return TeamSelected;
+            }
+
+
+            set {
+                TeamSelected = value;
+                if (TeamSelected == null)
+                {
+                    
+                }
+            
+            }
+        
+        } 
         public string SecondEntry { get; set; }
         public bool IsActiveCheckBox { get; set; } = true;
         public string SearchEntry { get; set; }
         public DelegateCommand GetTeamInformationCommand { get; set; }
 
-        public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice,INavigationParameters navigationParameter) : base(navigationService, apiService, pagedialogservice, navigationParameter)
+        public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
         {
             GetTeamInformationCommand = new DelegateCommand(async() =>
             {

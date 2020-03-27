@@ -16,7 +16,7 @@ namespace MLBInfo.ViewModels
         public string Team_ID { get; set; }
 
         public DelegateCommand GetTeamInformationCommand { get; set; }
-        public TeamRosterPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, INavigationParameters navigationParameter) :base(navigationService, apiService, pagedialogservice, navigationParameter)
+        public TeamRosterPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) :base(navigationService, apiService, pagedialogservice)
         {
 
             GetTeamInformationCommand = new DelegateCommand(async () =>
