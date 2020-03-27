@@ -5,6 +5,8 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace MLBInfo.ViewModels
 {
@@ -20,6 +22,15 @@ namespace MLBInfo.ViewModels
             NavigationService = navigationService;
             ApiService = apiService;
             PageDialogService = pagedialogservice;
+        }
+
+        public async Task<bool> HasInternet()
+        {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+                await PageDialogService.DisplayAlertAsync("Alert", "No tienes internet", "OK");
+
+            return (Connectivity.NetworkAccess == NetworkAccess.Internet);
+
         }
     }
 }

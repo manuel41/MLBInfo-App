@@ -41,7 +41,7 @@ namespace MLBPlayersApp.ViewModels
         {
             Players?.Clear();
             string status = (IsActiveCheckBox) ? "Y" : "N";
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            if (await this.HasInternet())
             {
                 try
                 {
@@ -53,11 +53,6 @@ namespace MLBPlayersApp.ViewModels
                     Debug.WriteLine($"API EXCEPTION {ex}");
                 }
 
-            }
-            else
-            {
-                
-                await PageDialogService.DisplayAlertAsync("Alert", "Internet connection is not available", "OK");
             }
         }
     }

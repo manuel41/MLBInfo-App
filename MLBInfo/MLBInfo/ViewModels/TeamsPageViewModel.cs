@@ -42,9 +42,8 @@ namespace MLBTeamsApp.ViewModels
 
         async Task GetPlayerData()
         {
-        
-                if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-                {
+            if (await this.HasInternet())
+            {
                 try
                 {
                     Entry = (IsActiveCheckBox) ? "Y" : "N";
@@ -56,10 +55,6 @@ namespace MLBTeamsApp.ViewModels
                 }
 
             }
-                else
-                {
-                  await PageDialogService.DisplayAlertAsync("Alert", "You have been alerted", "OK");
-                }
         }
                              
    }
