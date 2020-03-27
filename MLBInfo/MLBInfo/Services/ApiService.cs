@@ -49,8 +49,9 @@ namespace MLBPlayersApp.Services
 
             var result = await httpClient.GetStringAsync($"{url1}/json/named.roster_team_alltime.bam?start_season={Startseason}&end_season={Endseason}&team_id={TeamId}");
             var data = JsonConvert.DeserializeObject<RowExample>(result);
-            return data.RowRosterTeamAlltime.RowQueryResults.Row;
+            return data?.RowRosterTeamAlltime?.RowQueryResults?.Rows;
         }
 
+      
     }
 }

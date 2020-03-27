@@ -88,7 +88,7 @@ namespace MLBInfo.Models
         public string TotalSize { get; set; }
 
         [JsonProperty("row")]
-        public IList<Row> Row { get; set; }
+        public IList<Row> Rows { get; set; }
     }
 
     public class RowRosterTeamAlltime
