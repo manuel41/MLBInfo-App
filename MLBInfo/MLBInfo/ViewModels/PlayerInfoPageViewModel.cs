@@ -1,5 +1,6 @@
 ﻿using MLBInfo.Models;
 using MLBPlayersApp.Services;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System;
@@ -15,9 +16,14 @@ namespace MLBInfo.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public DelegateCommand ViewTeamRosterCommand { get; set; }
+
         public PlayerInfoPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, INavigationParameters navigationParameter) : base(navigationService, apiService, pagedialogservice, navigationParameter)
         {
-
+            //ViewTeamRosterCommand = new DelegateCommand(async () =>
+            //{
+            //    //if (!string.IsNullOrEmpty(Player.TeamId)) await GetPlayerData(SearchEntry);
+            //});
         }
 
         public async void Initialize(INavigationParameters parameters)
