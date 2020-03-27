@@ -1,4 +1,5 @@
-﻿using MLBPlayersApp.Models;
+﻿using MLBInfo.Models;
+using MLBPlayersApp.Models;
 using MLBTeamsApp.Models;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,7 @@ namespace MLBPlayersApp.Services
     {
         Task<IList<Team>> GetTeamsList(string SeassonType, string Seasson);
         Task<QueryResults> GetPlayersList(string search, string active);
+
+        Task<PlayerData> GetPlayerData(string id);
     }
 }

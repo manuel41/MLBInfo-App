@@ -1,4 +1,5 @@
 ﻿using MLBApp;
+using MLBInfo.Models;
 using MLBPlayersApp.Models;
 using MLBTeamsApp.Models;
 using Newtonsoft.Json;
@@ -32,6 +33,14 @@ namespace MLBPlayersApp.Services
             var result = await httpClient.GetStringAsync($"{uri}.search_player_all.bam?sport_code='mlb'&active_sw='{active}'&name_part='{search}%25'");
 
             return JsonConvert.DeserializeObject<SearchQuery>(result)?.SearchPlayerAll?.QueryResults;
+        }
+
+        public async Task<PlayerData> GetPlayerData(string id)
+        {
+            HttpClient httpClient = new HttpClient();
+            var result = await httpClient.GetStringAsync($"{uri}.player_info.bam?sport_code='mlb'&player_id={id}");
+
+            return JsonConvert.DeserializeObject<PlayerInfoResult>(result)?.PlayerInfo?.QueryResults?.PlayerData;
         }
 
     }

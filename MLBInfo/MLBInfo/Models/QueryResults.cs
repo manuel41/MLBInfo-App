@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MLBInfo.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,16 @@ namespace MLBPlayersApp.Models
             {
                 if (this.SearchResult is JArray list) return list.ToObject<List<Player>>();
                 else if (this.SearchResult is JObject obj) return new List<Player>() { obj.ToObject<Player>() };
+                return null;
+            }
+        }
+
+        [JsonIgnore]
+        public PlayerData PlayerData
+        {
+            get
+            {
+                if (this.SearchResult is JObject obj) return obj.ToObject<PlayerData>();
                 return null;
             }
         }
