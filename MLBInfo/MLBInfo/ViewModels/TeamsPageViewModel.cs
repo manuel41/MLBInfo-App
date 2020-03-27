@@ -74,10 +74,10 @@ namespace MLBTeamsApp.ViewModels
 
             }
         }
-       async Task GetElementValues() {
+        public async Task GetElementValues() {
 
            var nav = new NavigationParameters();
-           nav.Add("StarSeason", TeamSelected.Season);
+           nav.Add("StarSeason", Convert.ToString(TeamSelected.Season));
            int x = Convert.ToInt32(TeamSelected.Season) + 1;
            nav.Add("EndSeason", Convert.ToString(x));
            nav.Add("TeamID", TeamSelected.TeamId);

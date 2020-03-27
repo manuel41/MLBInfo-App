@@ -33,18 +33,18 @@ namespace MLBInfo.ViewModels
         {
             if (parameters.ContainsKey("StarSeason"))
             {
-                Start_Season = parameters["Name"].ToString();
+                Start_Season = parameters["StarSeason"].ToString();
             }
 
 
             if (parameters.ContainsKey("EndSeason"))
             {
-                End_Season = parameters["LastName"].ToString();
+                End_Season = parameters["EndSeason"].ToString();
             }
 
             if (parameters.ContainsKey("TeamID"))
             {
-                Team_ID = parameters["LastName"].ToString();
+                Team_ID = parameters["TeamID"].ToString();
             }
             
             if (await this.HasInternet())
