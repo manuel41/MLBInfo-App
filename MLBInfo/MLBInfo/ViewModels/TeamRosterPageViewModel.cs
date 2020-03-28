@@ -14,12 +14,14 @@ namespace MLBInfo.ViewModels
 {
     public class TeamRosterPageViewModel : BaseViewModel, INotifyPropertyChanged, IInitialize
     {
-        public ObservableCollection<Row> Rows { get; set; }
+        public ObservableCollection<TeamRoster> TeamRosters { get; set; }
         public string Start_Season { get; set; }
         public string End_Season { get; set; }
         public string Team_ID { get; set; }
 
         public DelegateCommand GetTeamInformationCommand { get; set; }
+
+        public DelegateCommand PopPage { get; set; }
         public TeamRosterPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) :base(navigationService, apiService, pagedialogservice)
         {
 
@@ -33,23 +35,23 @@ namespace MLBInfo.ViewModels
         {
             if (parameters.ContainsKey("StarSeason"))
             {
-                Start_Season = parameters["StarSeason"].ToString();
+                Start_Season = $"{parameters["StarSeason"]}";
             }
 
 
             if (parameters.ContainsKey("EndSeason"))
             {
-                End_Season = parameters["EndSeason"].ToString();
+                End_Season = $"{parameters["EndSeason"]}";
             }
 
             if (parameters.ContainsKey("TeamID"))
             {
-                Team_ID = parameters["TeamID"].ToString();
+                Team_ID = $"{parameters["TeamID"]}";
             }
             
             if (await this.HasInternet())
             {
-                Rows = new ObservableCollection<Row>(await ApiService.GetRowData(Start_Season, End_Season, Team_ID));
+                TeamRosters = new ObservableCollection<TeamRoster>(await ApiService.GetRowData(Start_Season, End_Season, Team_ID));
             }
 
         }

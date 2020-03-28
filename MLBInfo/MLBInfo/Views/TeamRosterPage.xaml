@@ -6,10 +6,12 @@
              mc:Ignorable="d"
              x:Class="MLBInfo.Views.TeamRosterPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Row}">
+        <ListView ItemsSource="{Binding TeamRosters}">
 
             <ListView.Header>
-                <Label Text="Team-Roster" HorizontalOptions="Center"/>
+                <StackLayout Margin="40">
+                    <Label Text="Team-Roster" FontSize="Title" HorizontalOptions="Center" TextColor="Black" TextDecorations="Underline"/>
+                </StackLayout>
             </ListView.Header>
 
             <ListView.ItemTemplate>

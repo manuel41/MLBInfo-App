@@ -29,26 +29,29 @@ namespace MLBTeamsApp.ViewModels
         public string Entry { get; set; }
 
         public Team teamSelected;
-        public Team TeamSelected {
+       
+        public string SecondEntry { get; set; }
+        public bool IsActiveCheckBox { get; set; }
+        public string SearchEntry { get; set; }
+        public DelegateCommand GetTeamInformationCommand { get; set; }
+        public DelegateCommand NavigateToTeamRoster { get; set; }
+        public Team TeamSelected
+        {
 
-            get 
+            get
             {
                 return teamSelected;
             }
 
 
-            set 
+            set
             {
                 teamSelected = value;
 
-                if (teamSelected != null) GetElementValues();
+                if (teamSelected != null) NavigateToTeamRoster.Execute();
             }
-        
-        } 
-        public string SecondEntry { get; set; }
-        public bool IsActiveCheckBox { get; set; }
-        public string SearchEntry { get; set; }
-        public DelegateCommand GetTeamInformationCommand { get; set; }
+
+        }
 
         public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
         {
@@ -56,6 +59,12 @@ namespace MLBTeamsApp.ViewModels
             {
               await GetPlayerData();
             });
+
+            NavigateToTeamRoster = new DelegateCommand(async () =>
+            {
+                await GoToTeamRosterPage();
+            });
+
         }
 
         async Task GetPlayerData()
@@ -74,16 +83,29 @@ namespace MLBTeamsApp.ViewModels
 
             }
         }
-        public async Task GetElementValues() {
+       
+        async Task GoToTeamRosterPage() {
 
-           var nav = new NavigationParameters();
-           nav.Add("StarSeason", Convert.ToString(TeamSelected.Season));
-           int x = Convert.ToInt32(TeamSelected.Season) + 1;
-           nav.Add("EndSeason", Convert.ToString(x));
-           nav.Add("TeamID", TeamSelected.TeamId);
-           await NavigationService.NavigateAsync(NavConstants.TeamRoster, nav);
+            try
+            {
+                var nav = new NavigationParameters();
+                nav.Add("StarSeason", TeamSelected.Season);
+                int x = Convert.ToInt32(TeamSelected.Season) + 1;
+                nav.Add("EndSeason", $"{x}");
+                nav.Add("TeamID", TeamSelected.TeamId);
+                await NavigationService.NavigateAsync(NavConstants.TeamRoster, nav);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"API EXCEPTION {ex}");
+            }
 
-        }                      
+        }
+
+
+
+
+
    }
 }
 

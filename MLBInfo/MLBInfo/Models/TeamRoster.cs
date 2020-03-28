@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MLBInfo.Models
 {
-    public class Row : INotifyPropertyChanged
+    public class TeamRoster
     {
 
         [JsonProperty("name_first_last")]
@@ -78,10 +78,10 @@ namespace MLBInfo.Models
         [JsonProperty("active_sw")]
         public string ActiveSw { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+      
     }
 
-    public class RowQueryResults
+    public class TeamRosterQueryResults
     {
 
         [JsonProperty("created")]
@@ -91,24 +91,24 @@ namespace MLBInfo.Models
         public string TotalSize { get; set; }
 
         [JsonProperty("row")]
-        public IList<Row> Rows { get; set; }
+        public IList<TeamRoster> TeamRoster { get; set; }
     }
 
-    public class RowRosterTeamAlltime
+    public class TeamRosterRosterTeamAlltime
     {
 
         [JsonProperty("copyRight")]
         public string CopyRight { get; set; }
 
         [JsonProperty("queryResults")]
-        public RowQueryResults RowQueryResults { get; set; }
+        public TeamRosterQueryResults TeamRosterQueryResults { get; set; }
     }
 
-    public class RowExample
+    public class TeamRosterExample
     {
 
         [JsonProperty("roster_team_alltime")]
-        public RowRosterTeamAlltime RowRosterTeamAlltime { get; set; }
+        public TeamRosterRosterTeamAlltime TeamRosterRosterTeamAlltime { get; set; }
     }
 
 }
