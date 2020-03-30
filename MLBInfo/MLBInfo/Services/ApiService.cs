@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MLBPlayersApp.Services
 {
-    public class ApiService :Config, IApiService
+    public class ApiService:Config, IApiService
     {
         public async Task<IList<Team>> GetTeamsList(string seasonType, string season)
         {
@@ -43,13 +43,13 @@ namespace MLBPlayersApp.Services
             return JsonConvert.DeserializeObject<PlayerInfoResult>(result)?.PlayerInfo?.QueryResults?.PlayerData;
         }
 
-        public async Task<IList<Row>> GetRowData(string startSeason, string endSeason, string teamId)
+        public async Task<IList<TeamRoster>> GetRowData(string startSeason, string endSeason, string teamId)
         {
             HttpClient httpClient = new HttpClient();
 
-            var result = await httpClient.GetStringAsync($"{url1}/json/named.roster_team_alltime.bam?start_season={startSeason}&end_season={endSeason}&team_id={teamId}");
-            var data = JsonConvert.DeserializeObject<RowExample>(result);
-            return data?.RowRosterTeamAlltime?.RowQueryResults?.Rows;
+            var result = await httpClient.GetStringAsync($"{url1}.roster_team_alltime.bam?start_season='{startSeason}'&end_season='{endSeason}'&team_id='{teamId}'");
+            var data = JsonConvert.DeserializeObject<TeamRosterExample>(result);
+            return data?.TeamRosterRosterTeamAlltime?.TeamRosterQueryResults?.TeamRoster;
         }
 
       
