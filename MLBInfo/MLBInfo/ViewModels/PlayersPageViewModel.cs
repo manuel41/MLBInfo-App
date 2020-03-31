@@ -81,19 +81,22 @@ namespace MLBPlayersApp.ViewModels
 
         public async Task ViewPlayerInfo()
         {
-            var nav = new NavigationParameters();
-            Player = await ApiService.GetPlayerData(playerSelected.PlayerId);
-            nav.Add("Name", Player.NameDisplayFirstLast);
-            nav.Add("TeamName", Player.TeamName);
-            nav.Add("PrimaryPosition", Player.PrimaryPosition);
-            nav.Add("JerseyNumber", Player.JerseyNumber);
-            nav.Add("Weight", Player.Weight);
-            nav.Add("Age", Player.Age);
-            nav.Add("BirthCountry", Player.BirthCountry);
-            nav.Add("Status", Player.Status);
-            nav.Add("TeamId", Player.TeamId);
-            nav.Add("Twitter", Player.TwitterId);
-            await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
+            if (await this.HasInternet())
+            {
+                var nav = new NavigationParameters();
+                Player = await ApiService.GetPlayerData(playerSelected.PlayerId);
+                nav.Add("Name", Player.NameDisplayFirstLast);
+                nav.Add("TeamName", Player.TeamName);
+                nav.Add("PrimaryPosition", Player.PrimaryPosition);
+                nav.Add("JerseyNumber", Player.JerseyNumber);
+                nav.Add("Weight", Player.Weight);
+                nav.Add("Age", Player.Age);
+                nav.Add("BirthCountry", Player.BirthCountry);
+                nav.Add("Status", Player.Status);
+                nav.Add("TeamId", Player.TeamId);
+                nav.Add("Twitter", Player.TwitterId);
+                await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
+            }
         }
     }
 }
