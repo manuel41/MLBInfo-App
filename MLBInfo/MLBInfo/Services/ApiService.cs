@@ -52,6 +52,15 @@ namespace MLBPlayersApp.Services
             return data?.TeamRosterRosterTeamAlltime?.TeamRosterQueryResults?.TeamRoster;
         }
 
-      
+        public async Task<GamesResults> GetUpcomingGames()
+        {
+            string season = DateTime.Now.ToString("yyyy");
+            string currentDate = DateTime.Now.ToString("yyyyMMdd");
+            string lastDate = season + "1231";
+
+            HttpClient httpClient = new HttpClient();
+            var result = await httpClient.GetStringAsync($"{url1}.mlb_broadcast_info.bam?src_type='TV'&src_comment='National'&tcid=mm_mlb_schedule&start_date='{currentDate}'&end_date='{lastDate}'&season={season}");
+            return JsonConvert.DeserializeObject<UpcomingGames>(result)?.MlbBroadcastInfo?.GamesResults;
+        }
     }
 }
