@@ -82,7 +82,7 @@ namespace MLBInfo.Models
     public class GamesResults
     {
         [JsonIgnore]
-        public List<Games> PlayersList
+        public List<Games> GamesList
         {
             get
             {
