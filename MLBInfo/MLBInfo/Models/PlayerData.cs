@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace MLBInfo.Models
 {
-    public class PlayerData
+    public class PlayerData: INotifyPropertyChanged
     {
         [JsonProperty("birth_country")]
         public string BirthCountry { get; set; }
@@ -159,5 +160,7 @@ namespace MLBInfo.Models
 
         [JsonProperty("name_full")]
         public string NameFull { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
