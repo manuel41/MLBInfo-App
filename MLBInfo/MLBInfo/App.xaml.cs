@@ -34,6 +34,7 @@ namespace MLBInfo
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterForNavigation<TabbedHomePage>();
             containerRegistry.RegisterForNavigation<TeamPage, TeamsPageViewModel>();

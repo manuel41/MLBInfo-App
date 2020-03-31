@@ -6,6 +6,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System;
+using Prism.Navigation.TabbedPages;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
