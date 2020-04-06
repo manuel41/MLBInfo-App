@@ -138,4 +138,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\twitter_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\News1Icon.jfif" />
+  </ItemGroup>
 </Project>
