@@ -56,7 +56,7 @@ namespace MLBPlayersApp.Services
         {
             string season = DateTime.Now.ToString("yyyy");
             string currentDate = DateTime.Now.ToString("yyyyMMdd");
-            string lastDate = season + "1231";
+            string lastDate = DateTime.Now.AddDays(30).ToString("yyyyMMdd");
 
             HttpClient httpClient = new HttpClient();
             var result = await httpClient.GetStringAsync($"{url1}.mlb_broadcast_info.bam?src_type='TV'&src_comment='National'&tcid=mm_mlb_schedule&sort_by='game_time_et_asc'&start_date='{currentDate}'&end_date='{lastDate}'&season={season}");
