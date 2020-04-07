@@ -8,5 +8,17 @@
              mc:Ignorable="d"
              x:Class="MLBInfo.App">
     <Application.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="LabelTitleStyle" TargetType="Label">
+
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="32"/>
+
+            </Style>
+
+          
+
+        </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>
