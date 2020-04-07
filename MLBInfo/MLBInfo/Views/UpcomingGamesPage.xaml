@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="MLBInfo.Views.UpcomingGamesPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding UpcomingGamesList}" HasUnevenRows="True" BackgroundColor="#002D72">
+        <ListView ItemsSource="{Binding UpcomingGamesList}" HasUnevenRows="True" BackgroundColor="#005082">
             <ListView.Header>
                 <Label Text="Upcoming Games" FontSize="Title" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20"/>
             </ListView.Header>

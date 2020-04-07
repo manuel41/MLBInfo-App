@@ -40,7 +40,14 @@ namespace MLBPlayersApp.Services
             HttpClient httpClient = new HttpClient();
             var result = await httpClient.GetStringAsync($"{uri}.player_info.bam?sport_code='mlb'&player_id={id}");
 
-            return JsonConvert.DeserializeObject<PlayerInfoResult>(result)?.PlayerInfo?.QueryResults?.PlayerData;
+            PlayerData player = JsonConvert.DeserializeObject<PlayerInfoResult>(result)?.PlayerInfo?.QueryResults?.PlayerData;
+
+            var playerImage = await httpClient.GetStringAsync($"{player_image}{player.NameDisplayFirstLast.Replace(" ", "_")}");
+            PlayerImageData playerImageData = JsonConvert.DeserializeObject<PlayerImageData>(playerImage);
+
+            player.PlayerPicture = playerImageData.PlayerImage[0].StrCutout;
+
+            return player;
         }
 
         public async Task<IList<TeamRoster>> GetRowData(string startSeason, string endSeason, string teamId)
@@ -52,7 +59,7 @@ namespace MLBPlayersApp.Services
             return data?.TeamRosterRosterTeamAlltime?.TeamRosterQueryResults?.TeamRoster;
         }
 
-        public async Task<GamesResults> GetUpcomingGames()
+        public async Task<List<Game>> GetUpcomingGames()
         {
             string season = DateTime.Now.ToString("yyyy");
             string currentDate = DateTime.Now.ToString("yyyyMMdd");
@@ -67,7 +74,8 @@ namespace MLBPlayersApp.Services
             var logos = await httpClient.GetStringAsync(logos_url);
             TeamLogos teamLogos = JsonConvert.DeserializeObject<TeamLogos>(logos);
 
-            foreach (Games game in gamesResults.GamesList)
+            var data = gamesResults.GamesList;
+            foreach (Game game in data)
             {
                 string homeTeamName = game.HomeTeamFull.Replace(" ", "");
                 var homeTeamLogo = from homeTeam in teamLogos.TeamsList where homeTeamName == homeTeam.TeamName select homeTeam.Logo;
@@ -76,10 +84,9 @@ namespace MLBPlayersApp.Services
                 string awayTeamName = game.AwayTeamFull.Replace(" ", "");
                 var awayTeamLogo = from awayTeam in teamLogos.TeamsList where awayTeamName == awayTeam.TeamName select awayTeam.Logo;
                 game.AwayTeamLogo = awayTeamLogo.First<string>();
-                break;
             }
 
-            return gamesResults;
+            return data;
         }
     }
 }
