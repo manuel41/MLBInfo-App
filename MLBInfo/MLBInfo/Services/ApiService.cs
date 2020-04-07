@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
+using Xamarin.Forms;
 
 namespace MLBPlayersApp.Services
 {
@@ -57,8 +59,26 @@ namespace MLBPlayersApp.Services
             string lastDate = season + "1231";
 
             HttpClient httpClient = new HttpClient();
-            var result = await httpClient.GetStringAsync($"{url1}.mlb_broadcast_info.bam?src_type='TV'&src_comment='National'&tcid=mm_mlb_schedule&start_date='{currentDate}'&end_date='{lastDate}'&season={season}");
-            return JsonConvert.DeserializeObject<UpcomingGames>(result)?.MlbBroadcastInfo?.GamesResults;
+            var result = await httpClient.GetStringAsync($"{url1}.mlb_broadcast_info.bam?src_type='TV'&src_comment='National'&tcid=mm_mlb_schedule&sort_by='game_time_et_asc'&start_date='{currentDate}'&end_date='{lastDate}'&season={season}");
+            GamesResults gamesResults = JsonConvert.DeserializeObject<UpcomingGames>(result)?.MlbBroadcastInfo?.GamesResults;
+
+            httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", "44a347ecac0e3450b4fc668536b1a191");
+
+            var logos = await httpClient.GetStringAsync(logos_url);
+            TeamLogos teamLogos = JsonConvert.DeserializeObject<TeamLogos>(logos);
+
+            foreach (Games game in gamesResults.GamesList)
+            {
+                string homeTeamName = game.HomeTeamFull.Replace(" ", "");
+                var homeTeamLogo = from homeTeam in teamLogos.TeamsList where homeTeamName == homeTeam.TeamName select homeTeam.Logo;
+                game.HomeTeamLogo = ImageSource.FromUri(new Uri(homeTeamLogo.First<string>()));
+            
+                string awayTeamName = game.AwayTeamFull.Replace(" ", "");
+                var awayTeamLogo = from awayTeam in teamLogos.TeamsList where awayTeamName == awayTeam.TeamName select awayTeam.Logo;
+                game.AwayTeamLogo = ImageSource.FromUri(new Uri(awayTeamLogo.First<string>()));
+            }
+
+            return gamesResults;
         }
     }
 }

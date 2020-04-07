@@ -5,4 +5,5 @@
              xmlns:local="clr-namespace:MLBInfo.Views">
     <local:TeamPage Title="Teams"/>
     <local:PlayerPage Title="Players"/>
+    <local:UpcomingGamesPage Title="Upcoming Games"/>
 </TabbedPage>
