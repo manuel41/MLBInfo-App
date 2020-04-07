@@ -71,11 +71,12 @@ namespace MLBPlayersApp.Services
             {
                 string homeTeamName = game.HomeTeamFull.Replace(" ", "");
                 var homeTeamLogo = from homeTeam in teamLogos.TeamsList where homeTeamName == homeTeam.TeamName select homeTeam.Logo;
-                game.HomeTeamLogo = ImageSource.FromUri(new Uri(homeTeamLogo.First<string>()));
+                game.HomeTeamLogo = homeTeamLogo.First<string>();
             
                 string awayTeamName = game.AwayTeamFull.Replace(" ", "");
                 var awayTeamLogo = from awayTeam in teamLogos.TeamsList where awayTeamName == awayTeam.TeamName select awayTeam.Logo;
-                game.AwayTeamLogo = ImageSource.FromUri(new Uri(awayTeamLogo.First<string>()));
+                game.AwayTeamLogo = awayTeamLogo.First<string>();
+                break;
             }
 
             return gamesResults;

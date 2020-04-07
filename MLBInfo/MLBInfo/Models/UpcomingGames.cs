@@ -81,10 +81,10 @@ namespace MLBInfo.Models
         public string HomeAway { get; set; }
 
         [JsonIgnore]
-        public ImageSource AwayTeamLogo { get; set; }
+        public string AwayTeamLogo { get; set; }
 
         [JsonIgnore]
-        public ImageSource HomeTeamLogo { get; set; }
+        public string HomeTeamLogo { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
