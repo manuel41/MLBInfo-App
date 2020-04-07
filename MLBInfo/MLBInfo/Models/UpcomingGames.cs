@@ -2,11 +2,13 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace MLBInfo.Models
 {
-    public class Games
+    public class Games: INotifyPropertyChanged
     {
 
         [JsonProperty("away_team_id")]
@@ -77,6 +79,14 @@ namespace MLBInfo.Models
 
         [JsonProperty("home_away")]
         public string HomeAway { get; set; }
+
+        [JsonIgnore]
+        public string AwayTeamLogo { get; set; }
+
+        [JsonIgnore]
+        public string HomeTeamLogo { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 
     public class GamesResults

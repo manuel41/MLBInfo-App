@@ -6,4 +6,5 @@
     <local:TeamPage Title="Teams"/>
     <local:PlayerPage Title="Players"/>
     <local:MLBHomePage/>
+    <local:UpcomingGamesPage Title="Upcoming Games"/>
 </TabbedPage>

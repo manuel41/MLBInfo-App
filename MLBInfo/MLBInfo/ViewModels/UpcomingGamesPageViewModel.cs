@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MLBInfo.ViewModels
 {
-    public class UpcomingGamesPageViewModel : BaseViewModel, INotifyPropertyChanged
+    public class UpcomingGamesPageViewModel : BaseViewModel, INotifyPropertyChanged, IInitialize
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -20,7 +20,7 @@ namespace MLBInfo.ViewModels
 
         public UpcomingGamesPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
         {
-
+            
         }
 
         public async Task GetFutureGames()
@@ -37,6 +37,11 @@ namespace MLBInfo.ViewModels
                     Debug.WriteLine($"API EXCEPTION {ex}");
                 }
             }
+        }
+
+        public async void Initialize(INavigationParameters parameters)
+        {
+            await GetFutureGames();
         }
     }
 }
