@@ -26,11 +26,11 @@ namespace MLBPlayersApp.Services
 
         }
 
-        public async Task<QueryResults> GetPlayersList(string search, string active)
+        public async Task<QueryResults> GetPlayersList(string search)
         {
             search = search.Trim().Replace(" ", "_").ToLower();
             HttpClient httpClient = new HttpClient();
-            var result = await httpClient.GetStringAsync($"{uri}.search_player_all.bam?sport_code='mlb'&active_sw='{active}'&name_part='{search}%25'");
+            var result = await httpClient.GetStringAsync($"{uri}.search_player_all.bam?sport_code='mlb'&name_part='{search}%25'");
 
             return JsonConvert.DeserializeObject<SearchQuery>(result)?.SearchPlayerAll?.QueryResults;
         }

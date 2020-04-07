@@ -42,8 +42,6 @@ namespace MLBPlayersApp.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public bool IsActiveCheckBox { get; set; }
         public string SearchEntry { get; set; }
         public DelegateCommand SearchPlayerCommand { get; set; }
         public DelegateCommand ViewPlayerInfoCommand { get; set; }
@@ -64,12 +62,11 @@ namespace MLBPlayersApp.ViewModels
         public async Task GetPlayerData(string search)
         {
             Players?.Clear();
-            string status = (IsActiveCheckBox) ? "Y" : "N";
             if (await this.HasInternet())
             {
                 try
                 {
-                    QueryResults results = await ApiService.GetPlayersList(search, status);
+                    QueryResults results = await ApiService.GetPlayersList(search);
                     Players = new ObservableCollection<Player>(results.PlayersList as List<Player>);
                 }
                 catch (Exception ex)
