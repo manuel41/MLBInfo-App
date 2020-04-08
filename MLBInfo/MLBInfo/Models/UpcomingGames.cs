@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace MLBInfo.Models
 {
-    public class Games: INotifyPropertyChanged
+    public class Game: INotifyPropertyChanged
     {
 
         [JsonProperty("away_team_id")]
@@ -92,12 +92,12 @@ namespace MLBInfo.Models
     public class GamesResults
     {
         [JsonIgnore]
-        public List<Games> GamesList
+        public List<Game> GamesList
         {
             get
             {
-                if (this.SearchResult is JArray list) return list.ToObject<List<Games>>();
-                else if (this.SearchResult is JObject obj) return new List<Games>() { obj.ToObject<Games>() };
+                if (this.SearchResult is JArray list) return list.ToObject<List<Game>>();
+                else if (this.SearchResult is JObject obj) return new List<Game>() { obj.ToObject<Game>() };
                 return null;
             }
         }

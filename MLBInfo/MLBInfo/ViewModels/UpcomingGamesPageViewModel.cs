@@ -16,7 +16,7 @@ namespace MLBInfo.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<Games> UpcomingGamesList { get; set; }
+        public ObservableCollection<Game> UpcomingGamesList { get; set; }
 
         public UpcomingGamesPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
         {
@@ -29,8 +29,8 @@ namespace MLBInfo.ViewModels
             {
                 try
                 {
-                    GamesResults results = await ApiService.GetUpcomingGames();
-                    UpcomingGamesList = new ObservableCollection<Games>(results.GamesList as List<Games>);
+                    var results = await ApiService.GetUpcomingGames();
+                    UpcomingGamesList = new ObservableCollection<Game>(results as List<Game>);
                 }
                 catch(Exception ex)
                 {

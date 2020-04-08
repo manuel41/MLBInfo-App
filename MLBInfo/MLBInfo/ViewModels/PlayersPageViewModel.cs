@@ -93,6 +93,7 @@ namespace MLBPlayersApp.ViewModels
                 nav.Add("Status", Player.Status);
                 nav.Add("TeamId", Player.TeamId);
                 nav.Add("Twitter", Player.TwitterId);
+                nav.Add("Picture", Player.PlayerPicture);
                 await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
             }
         }

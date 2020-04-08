@@ -36,6 +36,7 @@ namespace MLBInfo.ViewModels
             if (parameters.ContainsKey("Status")) this.Player.Status = $"{parameters["Status"]}";
             if (parameters.ContainsKey("TeamId")) this.Player.TeamId = $"{parameters["TeamId"]}";
             if (parameters.ContainsKey("Twitter")) this.Player.TwitterId = $"{parameters["Twitter"]}";
+            if (parameters.ContainsKey("Picture")) this.Player.PlayerPicture = $"{parameters["Picture"]}";
         }
     }
 }
