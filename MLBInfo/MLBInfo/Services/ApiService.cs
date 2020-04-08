@@ -45,7 +45,14 @@ namespace MLBPlayersApp.Services
             var playerImage = await httpClient.GetStringAsync($"{player_image}{player.NameDisplayFirstLast.Replace(" ", "_")}");
             PlayerImageData playerImageData = JsonConvert.DeserializeObject<PlayerImageData>(playerImage);
 
-            player.PlayerPicture = playerImageData.PlayerImage[0].StrCutout;
+            if(playerImageData.PlayerImage != null)
+            {
+                player.PlayerPicture = (playerImageData.PlayerImage[0].StrCutout != null) ? playerImageData.PlayerImage[0].StrCutout : playerImageData.PlayerImage[0].StrThumb;
+            }
+            else
+            {
+                player.PlayerPicture = "ic_account_circle.png";
+            }
 
             return player;
         }
