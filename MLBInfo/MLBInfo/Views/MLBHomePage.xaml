@@ -25,10 +25,12 @@
 
 
             <Label Text="MLB-App" Style="{StaticResource LabelTitleStyle}" HorizontalOptions="Center" TextColor="White" Grid.Row="0" Grid.ColumnSpan="3"/>
-
             <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="White" Grid.Column="0" Grid.Row="1" />
             <Label Text="About-us" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Grid.Column="1" Grid.Row="1"/>
             <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="White" Grid.Column="2" Grid.Row="1" />
+            <StackLayout  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+                
+            </StackLayout>
 
         </Grid>
     </ContentPage.Content>
