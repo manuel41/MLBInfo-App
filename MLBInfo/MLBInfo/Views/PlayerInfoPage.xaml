@@ -27,7 +27,7 @@
             <Label Text="{Binding Player.NameDisplayFirstLast, StringFormat='Player name: {0}'}" Grid.Column="1" Grid.Row="0" Padding="45,15"/>
             <Label Text="{Binding Player.TeamName, StringFormat='Team: {0}'}" Grid.Column="1" Grid.Row="1" Padding="45,15"/>
             <Label Text="{Binding Player.PrimaryPosition, StringFormat='Position: {0}'}" Grid.Column="1" Grid.Row="2" Padding="45,15"/>
-            <Image Source="{Binding Player.PlayerPicture}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HeightRequest="160" WidthRequest="160"/>
+            <Image Source="{Binding Player.PlayerPicture}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HeightRequest="140" WidthRequest="140" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
             <Label Text="{Binding Player.JerseyNumber, StringFormat='Jersey number: {0}'}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Padding="45,10"/>
             <Label Text="{Binding Player.Weight, StringFormat='Weight: {0}'}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="45,10"/>
             <Label Text="{Binding Player.Age, StringFormat='Age: {0}'}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Padding="45,10"/>
