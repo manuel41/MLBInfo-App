@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="MLBInfo.Views.TeamRosterPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding TeamRosters}">
+        <ListView ItemsSource="{Binding TeamRoster}">
 
             <ListView.Header>
                 <StackLayout Margin="40">
@@ -18,8 +18,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding NameFirstLast, StringFormat='Name = {0}'}" VerticalOptions="Center"/>
-                            <Label Text="{Binding PlayerId, StringFormat='ID = {0}'}" VerticalOptions="Center"/>
+                            <Label Text="{Binding NameDisplayFirstLast, StringFormat='Name = {0}'}" VerticalOptions="Center"/>
                             <Label Text="{Binding PrimaryPosition, StringFormat='Position = {0}'}" VerticalOptions="Center"/>
                         </StackLayout>
                     </ViewCell>

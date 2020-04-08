@@ -57,13 +57,13 @@ namespace MLBPlayersApp.Services
             return player;
         }
 
-        public async Task<IList<TeamRoster>> GetRowData(string startSeason, string endSeason, string teamId)
+        public async Task<IList<Row>> GetRowData(string teamId)
         {
             HttpClient httpClient = new HttpClient();
 
-            var result = await httpClient.GetStringAsync($"{url1}.roster_team_alltime.bam?start_season='{startSeason}'&end_season='{endSeason}'&team_id='{teamId}'");
-            var data = JsonConvert.DeserializeObject<TeamRosterExample>(result);
-            return data?.TeamRosterRosterTeamAlltime?.TeamRosterQueryResults?.TeamRoster;
+            var result = await httpClient.GetStringAsync($"{url1}.roster_40.bam?team_id='{teamId}'");
+            var data = JsonConvert.DeserializeObject<TeamRoster>(result);
+            return data?.Roster40.QueryResults.Row;
         }
 
         public async Task<List<Game>> GetUpcomingGames()
