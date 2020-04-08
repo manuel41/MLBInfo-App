@@ -161,6 +161,9 @@ namespace MLBInfo.Models
         [JsonProperty("name_full")]
         public string NameFull { get; set; }
 
+        [JsonIgnore]
+        public string PlayerPicture { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
