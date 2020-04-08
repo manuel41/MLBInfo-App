@@ -1,4 +1,5 @@
-﻿using MLBInfo.Models;
+﻿using MLBApp;
+using MLBInfo.Models;
 using MLBPlayersApp.Services;
 using Prism.Commands;
 using Prism.Navigation;
@@ -15,16 +16,35 @@ namespace MLBInfo.ViewModels
     public class TeamRosterPageViewModel : BaseViewModel, INotifyPropertyChanged, IInitialize
     {
         public ObservableCollection<Row> TeamRoster { get; set; }
-        public string Start_Season { get; set; }
-        public string End_Season { get; set; }
+
+        public Row selectedPlayer;
+
+        public Row SelectedPlayer
+        {
+            get
+            {
+                return selectedPlayer;
+            }
+            set
+            {
+                selectedPlayer = value;
+                if (selectedPlayer != null) ViewPlayerInfoCommand.Execute();
+                selectedPlayer = null;
+            }
+        }
+
         public string Team_ID { get; set; }
 
         public DelegateCommand GetTeamInformationCommand { get; set; }
 
         public DelegateCommand PopPage { get; set; }
+        public DelegateCommand ViewPlayerInfoCommand { get; set; }
         public TeamRosterPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) :base(navigationService, apiService, pagedialogservice)
         {
-
+            ViewPlayerInfoCommand = new DelegateCommand(async () =>
+            {
+                await ViewPlayerInfo();
+            });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -44,6 +64,26 @@ namespace MLBInfo.ViewModels
                 TeamRoster = new ObservableCollection<Row>(await ApiService.GetRowData(Team_ID));
             }
 
+        }
+        public async Task ViewPlayerInfo()
+        {
+            if (await this.HasInternet())
+            {
+                var nav = new NavigationParameters();
+                PlayerData player = await ApiService.GetPlayerData(selectedPlayer.PlayerId);
+                nav.Add("Name", player.NameDisplayFirstLast);
+                nav.Add("TeamName", player.TeamName);
+                nav.Add("PrimaryPosition", player.PrimaryPosition);
+                nav.Add("JerseyNumber", player.JerseyNumber);
+                nav.Add("Weight", player.Weight);
+                nav.Add("Age", player.Age);
+                nav.Add("BirthCountry", player.BirthCountry);
+                nav.Add("Status", player.Status);
+                nav.Add("TeamId", player.TeamId);
+                nav.Add("Twitter", player.TwitterId);
+                nav.Add("Picture", player.PlayerPicture);
+                await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
+            }
         }
     }
 }
