@@ -71,7 +71,7 @@
                     <TapGestureRecognizer Command="{Binding OpenTwitterProfileCommand}"/>
                 </Image.GestureRecognizers>
             </Image>
-            <BoxView  BackgroundColor="#084177"  Grid.Column="0" Grid.Row="9"  Grid.ColumnSpan="2" Margin="120,20" CornerRadius="5"/>
+            <BoxView  BackgroundColor="#084177"  Grid.Column="0" Grid.Row="9"  Grid.ColumnSpan="2" Margin="100,20" CornerRadius="5"/>
                 <Label Text="{Binding Player.TwitterId}" Grid.Column="1" Grid.Row="9" VerticalOptions="Center" HorizontalOptions="Start" Padding="30,0" Style="{StaticResource StatsLabel}"/>
         </Grid>
         </ScrollView>
