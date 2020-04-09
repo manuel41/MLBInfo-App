@@ -97,5 +97,8 @@ namespace MLBPlayersApp.Models
 
         [JsonIgnore]
         public string PlayerPicture { get; set; }
+
+        [JsonIgnore]
+        public string AboutPlayer { get; set; }
     }
 }
