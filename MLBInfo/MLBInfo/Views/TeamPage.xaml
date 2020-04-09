@@ -22,10 +22,8 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Picker Title="Select one Seasson" TitleColor="Black" TextColor="Black" ItemsSource="{Binding SeassonsFromViewModelCollector}" ItemDisplayBinding="{Binding Year}" SelectedItem="{Binding SeassonSelected}"  Grid.Column="0" Grid.Row="0"/>
-                    <Label Text="All/Regular?" TextColor="Black" VerticalOptions="Center" Grid.Column="1" Grid.Row="0"/>
+                    <Picker Title="Select Season" TitleColor="Black" TextColor="Black" ItemsSource="{Binding SeassonsFromViewModelCollector}" ItemDisplayBinding="{Binding Year}" SelectedItem="{Binding SeassonSelected}"  Grid.Column="0" Grid.Row="0"/>
                     <Label Text="{Binding WSeasson}"  TextColor="Black" Grid.Column="0" Grid.Row="1"/>
-                    <CheckBox IsChecked="{Binding IsActiveCheckBox}" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center"/>
                     <BoxView HorizontalOptions="FillAndExpand" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalOptions="Center" HeightRequest="1" Color="Black"/>
                 </Grid>
             </ListView.Header>
@@ -33,7 +31,8 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout BackgroundColor="#e1e1e1">
-                            <Label Text="{Binding NameAbbrev, StringFormat='Team: {0}'}" FontSize="Medium" TextColor="Black"/>
+                            <Label Text="{Binding NameDisplayLong, StringFormat='Team: {0}'}" FontSize="Medium" TextColor="Black"/>
+                            <Image Source="{Binding Logo}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="180" HeightRequest="180"/>
                             <Label Text="{Binding State, StringFormat='State: {0}'}" TextColor="Black"/>
                             <Label Text="{Binding Season, StringFormat='Season: {0}'}" TextColor="Black"/>
                             <Label Text="{Binding Division, StringFormat='Division: {0}'}" TextColor="Black"/>

@@ -50,7 +50,7 @@
             <Label Text="{Binding Player.Status, StringFormat='Status: {0}'}" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Padding="45,10"/>
             <BoxView BackgroundColor="#084177" Grid.Column="0" Grid.Row="7" HeightRequest="10" WidthRequest="10" CornerRadius="4"/>
 
-            <Button Text="Team Roster" Command="{Binding ViewTeamRosterCommand}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="30" WidthRequest="200"/>
+            <Button Text="Team Roster" Command="{Binding ViewTeamRosterCommand}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ButtonStyle}"/>
 
             <Image Source="twitter_icon.png" Grid.Column="0" Grid.Row="9" Margin="0,40"/>
             <Label Text="{Binding Player.TwitterId}" Grid.Column="0" Grid.Row="9" VerticalOptions="Center" HorizontalOptions="Start" Padding="40,0"/>
