@@ -24,7 +24,11 @@
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
 
-          
+            <Style TargetType="Label" x:Key="SecondaryLabel">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>
