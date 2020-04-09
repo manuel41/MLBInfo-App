@@ -33,7 +33,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout BackgroundColor="#27496d">
-                            <Label Text="{Binding NameAbbrev, StringFormat='Team: {0}'}" FontSize="Medium" TextColor="White"/>
+                            <Label Text="{Binding NameDisplayFull, StringFormat='Team: {0}'}" FontSize="Medium" TextColor="White"/>
                             <Label Text="{Binding State, StringFormat='State: {0}'}" TextColor="White"/>
                             <Label Text="{Binding Season, StringFormat='Season: {0}'}" TextColor="White"/>
                             <Label Text="{Binding Division, StringFormat='Division: {0}'}" TextColor="White"/>
