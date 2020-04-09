@@ -18,7 +18,7 @@ namespace MLBInfo.ViewModels
     public class PlayerInfoPageViewModel: BaseViewModel, INotifyPropertyChanged, IInitialize
     {
         public PlayerData Player { get; set; } = new PlayerData();
-        public const string twitter_url = "https://twitter.com/";
+        public const string TwitterUrl = "https://twitter.com/";
 
         public event PropertyChangedEventHandler PropertyChanged;
         public DelegateCommand ViewTeamRosterCommand { get; set; }
@@ -37,7 +37,7 @@ namespace MLBInfo.ViewModels
                     {
                         try
                         {
-                            await Browser.OpenAsync(new Uri($"{twitter_url}{Player.TwitterId.Replace("@", "")}"), BrowserLaunchMode.SystemPreferred);
+                            await Browser.OpenAsync(new Uri($"{TwitterUrl}{Player.TwitterId.Replace("@", "")}"), BrowserLaunchMode.SystemPreferred);
                         }
                         catch (Exception)
                         {

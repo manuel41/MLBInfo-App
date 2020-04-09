@@ -34,31 +34,12 @@ namespace MLBTeamsApp.ViewModels
 
         public string Entry { get; set; }
 
-        //public Team teamSelected;
-
         private Team oldTeam;
         
         public string SecondEntry { get; set; }
         public string SearchEntry { get; set; }
         public DelegateCommand GetTeamInformationCommand { get; set; }
         public DelegateCommand NavigateToTeamRoster { get; set; }
-        //public Team TeamSelected
-        //{
-
-        //    get
-        //    {
-        //        return teamSelected;
-        //    }
-
-
-        //    set
-        //    {
-        //        teamSelected = value;
-
-        //        if (teamSelected != null) NavigateToTeamRoster.Execute();   
-        //    }
-
-        //}
 
         Seasson seassonSelected;
         public Seasson SeassonSelected

@@ -23,9 +23,12 @@ namespace MLBInfo.ViewModels
         public DelegateCommand ViewGitHubRepoCommand { get; set; }
         public DelegateCommand ViewMLBInstagramCommand { get; set; }
 
-        public const string twitter_url = "https://twitter.com/MLB";
-        public const string github_repo = "https://github.com/manuel41/MLBInfo-App";
-        public const string insta_url = "https://www.instagram.com/mlb/";
+        public const string MLBTwitter = "https://twitter.com/MLB";
+        public const string Github_Repo = "https://github.com/manuel41/MLBInfo-App";
+        public const string Insta_Url = "https://www.instagram.com/mlb/";
+        public const string TwitterError = "Twitter profile not available";
+        public const string GitHubError = "Could not open repository";
+        public const string InstaError = "Instagram profile not available";
 
         public UpcomingGamesPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) : base(navigationService, apiService, pagedialogservice, seassonData)
         {
@@ -35,11 +38,11 @@ namespace MLBInfo.ViewModels
                 {
                     try
                     {
-                        await Browser.OpenAsync(new Uri($"{twitter_url}"), BrowserLaunchMode.SystemPreferred);
+                        await Browser.OpenAsync(new Uri($"{MLBTwitter}"), BrowserLaunchMode.SystemPreferred);
                     }
                     catch (Exception)
                     {
-                        await pagedialogservice.DisplayAlertAsync("Alert", "Twitter profile not available", "OK");
+                        await pagedialogservice.DisplayAlertAsync("Alert", TwitterError, "OK");
                     }
                 }
             });
@@ -49,11 +52,11 @@ namespace MLBInfo.ViewModels
                 {
                     try
                     {
-                        await Browser.OpenAsync(new Uri($"{github_repo}"), BrowserLaunchMode.SystemPreferred);
+                        await Browser.OpenAsync(new Uri($"{Github_Repo}"), BrowserLaunchMode.SystemPreferred);
                     }
                     catch (Exception)
                     {
-                        await pagedialogservice.DisplayAlertAsync("Alert", "Could not open repository", "OK");
+                        await pagedialogservice.DisplayAlertAsync("Alert", GitHubError, "OK");
                     }
                 }
             });
@@ -63,11 +66,11 @@ namespace MLBInfo.ViewModels
                 {
                     try
                     {
-                        await Browser.OpenAsync(new Uri($"{insta_url}"), BrowserLaunchMode.SystemPreferred);
+                        await Browser.OpenAsync(new Uri($"{Insta_Url}"), BrowserLaunchMode.SystemPreferred);
                     }
                     catch (Exception)
                     {
-                        await pagedialogservice.DisplayAlertAsync("Alert", "Instagram profile not available", "OK");
+                        await pagedialogservice.DisplayAlertAsync("Alert", InstaError, "OK");
                     }
                 }
 

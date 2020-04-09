@@ -16,11 +16,14 @@ namespace MLBPlayersApp.Services
 {
     public class ApiService:Config, IApiService
     {
+        private const string APIKey = "44a347ecac0e3450b4fc668536b1a191";
+        private const string DefaultPicture = "ic_account_circle.png";
+        private const string DefaultDescription = "No player description available";
         public async Task<IList<Team>> GetTeamsList(string season)
         {
             HttpClient httpClient = new HttpClient();
 
-            var result = await httpClient.GetStringAsync($"{url}&sort_order='name_asc'&season={season}");
+            var result = await httpClient.GetStringAsync($"{Url}&sort_order='name_asc'&season={season}");
             var data = JsonConvert.DeserializeObject<TeamQuery>(result);
             IList<Team> teamsList = data.TeamAllSeason.QueryResults.Teams;
 
@@ -42,7 +45,7 @@ namespace MLBPlayersApp.Services
         {
             search = search.Trim().Replace(" ", "_").ToLower();
             HttpClient httpClient = new HttpClient();
-            var result = await httpClient.GetStringAsync($"{url1}.search_player_all.bam?sport_code='mlb'&name_part='{search}%25'");
+            var result = await httpClient.GetStringAsync($"{Url2}.search_player_all.bam?sport_code='mlb'&name_part='{search}%25'");
 
             QueryResults queryResults = JsonConvert.DeserializeObject<SearchQuery>(result)?.SearchPlayerAll?.QueryResults;
             List<Player> players = queryResults.PlayersList;
@@ -58,8 +61,8 @@ namespace MLBPlayersApp.Services
                 }
                 else
                 {
-                    player.PlayerPicture = "ic_account_circle.png";
-                    player.AboutPlayer = "No player description available";
+                    player.PlayerPicture = DefaultPicture;
+                    player.AboutPlayer = DefaultDescription;
                 }
             }
 
@@ -69,7 +72,7 @@ namespace MLBPlayersApp.Services
         public async Task<PlayerData> GetPlayerData(string id)
         {
             HttpClient httpClient = new HttpClient();
-            var result = await httpClient.GetStringAsync($"{url1}.player_info.bam?sport_code='mlb'&player_id={id}");
+            var result = await httpClient.GetStringAsync($"{Url2}.player_info.bam?sport_code='mlb'&player_id={id}");
 
             PlayerData player = JsonConvert.DeserializeObject<PlayerInfoResult>(result)?.PlayerInfo?.QueryResults?.PlayerData;
 
@@ -80,7 +83,7 @@ namespace MLBPlayersApp.Services
         {
             HttpClient httpClient = new HttpClient();
 
-            var result = await httpClient.GetStringAsync($"{url1}.roster_40.bam?team_id='{teamId}'");
+            var result = await httpClient.GetStringAsync($"{Url2}.roster_40.bam?team_id='{teamId}'");
             var data = JsonConvert.DeserializeObject<TeamRoster>(result);
             IList<Row> playersList = data?.Roster40.QueryResults.Row;
 
@@ -96,7 +99,7 @@ namespace MLBPlayersApp.Services
                 }
                 else
                 {
-                    player.PlayerPicture = "ic_account_circle.png";
+                    player.PlayerPicture = DefaultPicture;
                 }
             }
 
@@ -110,7 +113,7 @@ namespace MLBPlayersApp.Services
             string lastDate = DateTime.Now.AddDays(30).ToString("yyyyMMdd");
 
             HttpClient httpClient = new HttpClient();
-            var result = await httpClient.GetStringAsync($"{url1}.mlb_broadcast_info.bam?src_type='TV'&src_comment='National'&tcid=mm_mlb_schedule&sort_by='game_time_et_asc'&start_date='{currentDate}'&end_date='{lastDate}'&season={season}");
+            var result = await httpClient.GetStringAsync($"{Url2}.mlb_broadcast_info.bam?src_type='TV'&src_comment='National'&tcid=mm_mlb_schedule&sort_by='game_time_et_asc'&start_date='{currentDate}'&end_date='{lastDate}'&season={season}");
             GamesResults gamesResults = JsonConvert.DeserializeObject<UpcomingGames>(result)?.MlbBroadcastInfo?.GamesResults;
             var data = gamesResults.GamesList;
 
@@ -132,7 +135,7 @@ namespace MLBPlayersApp.Services
         private async Task<TeamLogos> GetLogos()
         {
             HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", "44a347ecac0e3450b4fc668536b1a191");
+            httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", APIKey);
             var logos = await httpClient.GetStringAsync(logos_url);
             TeamLogos teamLogos = JsonConvert.DeserializeObject<TeamLogos>(logos);
             return teamLogos;
