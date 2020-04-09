@@ -59,6 +59,7 @@ namespace MLBPlayersApp.Services
                 else
                 {
                     player.PlayerPicture = "ic_account_circle.png";
+                    player.AboutPlayer = "No player description available";
                 }
             }
 
