@@ -22,7 +22,19 @@ namespace MLBPlayersApp.Services
 
             var result = await httpClient.GetStringAsync($"{url}&sort_order='name_asc'&season={season}");
             var data = JsonConvert.DeserializeObject<TeamQuery>(result);
-            return data?.TeamAllSeason?.QueryResults?.Teams;
+            IList<Team> teamsList = data.TeamAllSeason.QueryResults.Teams;
+
+            TeamLogos teamLogos = await this.GetLogos();
+
+            foreach (Team team in teamsList)
+            {
+                string teamName = team.NameDisplayLong.Replace(" ", "");
+                var selectedTeamLogo = from team2 in teamLogos.TeamsList where teamName == team2.TeamName select team2.Logo;
+                team.Logo = selectedTeamLogo.First<string>();
+
+            }
+
+            return teamsList;
 
         }
 
@@ -82,10 +94,7 @@ namespace MLBPlayersApp.Services
             var result = await httpClient.GetStringAsync($"{url1}.mlb_broadcast_info.bam?src_type='TV'&src_comment='National'&tcid=mm_mlb_schedule&sort_by='game_time_et_asc'&start_date='{currentDate}'&end_date='{lastDate}'&season={season}");
             GamesResults gamesResults = JsonConvert.DeserializeObject<UpcomingGames>(result)?.MlbBroadcastInfo?.GamesResults;
 
-            httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", "44a347ecac0e3450b4fc668536b1a191");
-
-            var logos = await httpClient.GetStringAsync(logos_url);
-            TeamLogos teamLogos = JsonConvert.DeserializeObject<TeamLogos>(logos);
+            TeamLogos teamLogos = await this.GetLogos();
 
             var data = gamesResults.GamesList;
             foreach (Game game in data)
@@ -100,6 +109,15 @@ namespace MLBPlayersApp.Services
             }
 
             return data;
+        }
+
+        private async Task<TeamLogos> GetLogos()
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", "44a347ecac0e3450b4fc668536b1a191");
+            var logos = await httpClient.GetStringAsync(logos_url);
+            TeamLogos teamLogos = JsonConvert.DeserializeObject<TeamLogos>(logos);
+            return teamLogos;
         }
     }
 }

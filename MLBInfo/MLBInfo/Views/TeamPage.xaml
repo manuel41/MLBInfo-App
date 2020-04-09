@@ -32,6 +32,7 @@
                     <ViewCell>
                         <StackLayout BackgroundColor="#e1e1e1">
                             <Label Text="{Binding NameDisplayLong, StringFormat='Team: {0}'}" FontSize="Medium" TextColor="Black"/>
+                            <Image Source="{Binding Logo}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="180" HeightRequest="180"/>
                             <Label Text="{Binding State, StringFormat='State: {0}'}" TextColor="Black"/>
                             <Label Text="{Binding Season, StringFormat='Season: {0}'}" TextColor="Black"/>
                             <Label Text="{Binding Division, StringFormat='Division: {0}'}" TextColor="Black"/>
