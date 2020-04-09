@@ -29,15 +29,18 @@ namespace MLBInfo.ViewModels
             {
                 if (!string.IsNullOrEmpty(Player.TeamId)) await GoToTeamRosterPage();
             });
-            OpenTwitterProfileCommand = new DelegateCommand(() =>
+            OpenTwitterProfileCommand = new DelegateCommand(async() =>
             {
-                try
+                if(await this.HasInternet())
                 {
-                    Browser.OpenAsync(new Uri($"{twitter_url}{Player.TwitterId.Replace("@", "")}"), BrowserLaunchMode.SystemPreferred);
-                }
-                catch (Exception)
-                {
-                    pagedialogservice.DisplayAlertAsync("Alert", "Twitter profile does not exist", "OK");
+                    try
+                    {
+                        await Browser.OpenAsync(new Uri($"{twitter_url}{Player.TwitterId.Replace("@", "")}"), BrowserLaunchMode.SystemPreferred);
+                    }
+                    catch (Exception)
+                    {
+                        await pagedialogservice.DisplayAlertAsync("Alert", "Twitter profile does not exist", "OK");
+                    }
                 }
             });
         }
