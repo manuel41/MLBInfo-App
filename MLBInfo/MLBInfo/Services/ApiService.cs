@@ -24,15 +24,15 @@ namespace MLBPlayersApp.Services
             var data = JsonConvert.DeserializeObject<TeamQuery>(result);
             IList<Team> teamsList = data.TeamAllSeason.QueryResults.Teams;
 
-            TeamLogos teamLogos = await this.GetLogos();
+            //TeamLogos teamLogos = await this.GetLogos();
 
-            foreach (Team team in teamsList)
-            {
-                string teamName = team.NameDisplayLong.Replace(" ", "");
-                var selectedTeamLogo = from team2 in teamLogos.TeamsList where teamName == team2.TeamName select team2.Logo;
-                team.Logo = selectedTeamLogo.First<string>();
+            //foreach (Team team in teamsList)
+            //{
+            //    string teamName = team.NameDisplayLong.Replace(" ", "");
+            //    var selectedTeamLogo = from team2 in teamLogos.TeamsList where teamName == team2.TeamName select team2.Logo;
+            //    team.Logo = selectedTeamLogo.First<string>();
 
-            }
+            //}
 
             return teamsList;
 
@@ -93,20 +93,19 @@ namespace MLBPlayersApp.Services
             HttpClient httpClient = new HttpClient();
             var result = await httpClient.GetStringAsync($"{url1}.mlb_broadcast_info.bam?src_type='TV'&src_comment='National'&tcid=mm_mlb_schedule&sort_by='game_time_et_asc'&start_date='{currentDate}'&end_date='{lastDate}'&season={season}");
             GamesResults gamesResults = JsonConvert.DeserializeObject<UpcomingGames>(result)?.MlbBroadcastInfo?.GamesResults;
-
-            TeamLogos teamLogos = await this.GetLogos();
-
             var data = gamesResults.GamesList;
-            foreach (Game game in data)
-            {
-                string homeTeamName = game.HomeTeamFull.Replace(" ", "");
-                var homeTeamLogo = from homeTeam in teamLogos.TeamsList where homeTeamName == homeTeam.TeamName select homeTeam.Logo;
-                game.HomeTeamLogo = homeTeamLogo.First<string>();
-            
-                string awayTeamName = game.AwayTeamFull.Replace(" ", "");
-                var awayTeamLogo = from awayTeam in teamLogos.TeamsList where awayTeamName == awayTeam.TeamName select awayTeam.Logo;
-                game.AwayTeamLogo = awayTeamLogo.First<string>();
-            }
+
+            //TeamLogos teamLogos = await this.GetLogos();
+            //foreach (Game game in data)
+            //{
+            //    string homeTeamName = game.HomeTeamFull.Replace(" ", "");
+            //    var homeTeamLogo = from homeTeam in teamLogos.TeamsList where homeTeamName == homeTeam.TeamName select homeTeam.Logo;
+            //    game.HomeTeamLogo = homeTeamLogo.First<string>();
+
+            //    string awayTeamName = game.AwayTeamFull.Replace(" ", "");
+            //    var awayTeamLogo = from awayTeam in teamLogos.TeamsList where awayTeamName == awayTeam.TeamName select awayTeam.Logo;
+            //    game.AwayTeamLogo = awayTeamLogo.First<string>();
+            //}
 
             return data;
         }
