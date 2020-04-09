@@ -109,8 +109,8 @@ namespace MLBTeamsApp.ViewModels
             {
                 try
                 {
-                    Entry = (IsActiveCheckBox) ? "Y" : "N";
-                    Teams = new ObservableCollection<Team>(await ApiService.GetTeamsList(Entry, SeassonSelected.Year));
+                    //Entry = (IsActiveCheckBox) ? "Y" : "N";
+                    Teams = new ObservableCollection<Team>(await ApiService.GetTeamsList(SeassonSelected.Year));
                 }
                 catch (Exception ex)
                 {

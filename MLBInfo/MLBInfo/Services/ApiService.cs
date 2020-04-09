@@ -16,11 +16,11 @@ namespace MLBPlayersApp.Services
 {
     public class ApiService:Config, IApiService
     {
-        public async Task<IList<Team>> GetTeamsList(string seasonType, string season)
+        public async Task<IList<Team>> GetTeamsList(string season)
         {
             HttpClient httpClient = new HttpClient();
 
-            var result = await httpClient.GetStringAsync($"{url}all_star_sw='{seasonType}'&sort_order='name_asc'&season={season}");
+            var result = await httpClient.GetStringAsync($"{url}&sort_order='name_asc'&season={season}");
             var data = JsonConvert.DeserializeObject<TeamQuery>(result);
             return data?.TeamAllSeason?.QueryResults?.Teams;
 
