@@ -37,12 +37,11 @@ namespace MLBPlayersApp.ViewModels
             {
                 playerSelected = value;
                 if (playerSelected != null) ViewPlayerInfoCommand.Execute();
+                playerSelected = null;
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public bool IsActiveCheckBox { get; set; }
         public string SearchEntry { get; set; }
         public DelegateCommand SearchPlayerCommand { get; set; }
         public DelegateCommand ViewPlayerInfoCommand { get; set; }
@@ -63,12 +62,11 @@ namespace MLBPlayersApp.ViewModels
         public async Task GetPlayerData(string search)
         {
             Players?.Clear();
-            string status = (IsActiveCheckBox) ? "Y" : "N";
             if (await this.HasInternet())
             {
                 try
                 {
-                    QueryResults results = await ApiService.GetPlayersList(search, status);
+                    QueryResults results = await ApiService.GetPlayersList(search);
                     Players = new ObservableCollection<Player>(results.PlayersList as List<Player>);
                 }
                 catch (Exception ex)
@@ -81,19 +79,23 @@ namespace MLBPlayersApp.ViewModels
 
         public async Task ViewPlayerInfo()
         {
-            var nav = new NavigationParameters();
-            Player = await ApiService.GetPlayerData(playerSelected.PlayerId);
-            nav.Add("Name", Player.NameDisplayFirstLast);
-            nav.Add("TeamName", Player.TeamName);
-            nav.Add("PrimaryPosition", Player.PrimaryPosition);
-            nav.Add("JerseyNumber", Player.JerseyNumber);
-            nav.Add("Weight", Player.Weight);
-            nav.Add("Age", Player.Age);
-            nav.Add("BirthCountry", Player.BirthCountry);
-            nav.Add("Status", Player.Status);
-            nav.Add("TeamId", Player.TeamId);
-            nav.Add("Twitter", Player.TwitterId);
-            await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
+            if (await this.HasInternet())
+            {
+                var nav = new NavigationParameters();
+                Player = await ApiService.GetPlayerData(playerSelected.PlayerId);
+                nav.Add("Name", Player.NameDisplayFirstLast);
+                nav.Add("TeamName", Player.TeamName);
+                nav.Add("PrimaryPosition", Player.PrimaryPosition);
+                nav.Add("JerseyNumber", Player.JerseyNumber);
+                nav.Add("Weight", Player.Weight);
+                nav.Add("Age", Player.Age);
+                nav.Add("BirthCountry", Player.BirthCountry);
+                nav.Add("Status", Player.Status);
+                nav.Add("TeamId", Player.TeamId);
+                nav.Add("Twitter", Player.TwitterId);
+                nav.Add("Picture", Player.PlayerPicture);
+                await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
+            }
         }
     }
 }

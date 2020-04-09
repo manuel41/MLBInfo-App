@@ -15,14 +15,11 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="8*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Entry Text="{Binding SearchEntry}" Placeholder="Player name" HorizontalOptions="Start" WidthRequest="290" Grid.Column="0" Grid.Row="0"/>
-                    <Label Text="Is active?" VerticalOptions="Center" Grid.Column="1" Grid.Row="0"/>
+                    <Entry Text="{Binding SearchEntry}" Placeholder="Player name" Grid.Column="0" Grid.Row="0"/>
                     <Button Text="Search" Command="{Binding SearchPlayerCommand}" Grid.Column="0" Grid.Row="1"/>
-                    <CheckBox IsChecked="{Binding IsActiveCheckBox}" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Start"/>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>

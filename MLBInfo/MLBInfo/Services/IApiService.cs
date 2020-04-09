@@ -12,9 +12,11 @@ namespace MLBPlayersApp.Services
     public interface IApiService
     {
         Task<IList<Team>> GetTeamsList(string seasonType, string season);
-        Task<QueryResults> GetPlayersList(string search, string active);
+        Task<QueryResults> GetPlayersList(string search);
 
         Task<PlayerData> GetPlayerData(string id);
-        Task<IList<TeamRoster>> GetRowData(string startSeason, string endSeason, string teamId);
+        Task<IList<Row>> GetRowData(string teamId);
+
+        Task<List<Game>> GetUpcomingGames();
     }
 }

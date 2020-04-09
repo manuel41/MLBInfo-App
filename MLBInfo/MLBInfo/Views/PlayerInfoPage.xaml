@@ -27,13 +27,14 @@
             <Label Text="{Binding Player.NameDisplayFirstLast, StringFormat='Player name: {0}'}" Grid.Column="1" Grid.Row="0" Padding="45,15"/>
             <Label Text="{Binding Player.TeamName, StringFormat='Team: {0}'}" Grid.Column="1" Grid.Row="1" Padding="45,15"/>
             <Label Text="{Binding Player.PrimaryPosition, StringFormat='Position: {0}'}" Grid.Column="1" Grid.Row="2" Padding="45,15"/>
+            <Image Source="{Binding Player.PlayerPicture}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HeightRequest="140" WidthRequest="140" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
             <Label Text="{Binding Player.JerseyNumber, StringFormat='Jersey number: {0}'}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Padding="45,10"/>
             <Label Text="{Binding Player.Weight, StringFormat='Weight: {0}'}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="45,10"/>
             <Label Text="{Binding Player.Age, StringFormat='Age: {0}'}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Padding="45,10"/>
             <Label Text="{Binding Player.BirthCountry, StringFormat='Birth country: {0}'}" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="45,10"/>
             <Label Text="{Binding Player.Status, StringFormat='Status: {0}'}" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Padding="45,10"/>
 
-            <Button Text="Team Roster" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="30" WidthRequest="200"/>
+            <Button Text="Team Roster" Command="{Binding ViewTeamRosterCommand}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="30" WidthRequest="200"/>
 
             <Image Source="twitter_icon.png" Grid.Column="0" Grid.Row="9" Margin="0,40"/>
             <Label Text="{Binding Player.TwitterId}" Grid.Column="1" Grid.Row="9" VerticalOptions="Center" HorizontalOptions="Start" Padding="40,0"/>
