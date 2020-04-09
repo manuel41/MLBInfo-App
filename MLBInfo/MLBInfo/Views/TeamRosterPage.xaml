@@ -7,7 +7,7 @@
              x:Class="MLBInfo.Views.TeamRosterPage"
              BackgroundColor="#005082">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding TeamRosters}" HasUnevenRows="True">
+        <ListView ItemsSource="{Binding TeamRoster}" SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}">
 
             <ListView.Header>
                 <StackLayout Margin="40">
@@ -18,11 +18,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding NameFirstLast, StringFormat='Name = {0}'}" TextColor="White" VerticalOptions="Center"/>
-                            <Label Text="{Binding PlayerId, StringFormat='ID = {0}'}" TextColor="White" VerticalOptions="Center"/>
-                            <Label Text="{Binding PrimaryPosition, StringFormat='Position = {0}'}" TextColor="White" VerticalOptions="Center"/>
-                            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="White"/>
+                        <StackLayout>
+                            <Label Text="{Binding NameDisplayFirstLast, StringFormat='Name = {0}'}" VerticalOptions="Center"/>
+                            <Label Text="{Binding PrimaryPosition, StringFormat='Position = {0}'}" VerticalOptions="Center"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

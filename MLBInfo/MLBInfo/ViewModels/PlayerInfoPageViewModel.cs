@@ -1,4 +1,5 @@
-﻿using MLBInfo.Models;
+﻿using MLBApp;
+using MLBInfo.Models;
 using MLBPlayersApp.Services;
 using Prism.Commands;
 using Prism.Navigation;
@@ -6,7 +7,9 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MLBInfo.ViewModels
 {
@@ -18,10 +21,10 @@ namespace MLBInfo.ViewModels
         public DelegateCommand ViewTeamRosterCommand { get; set; }
         public PlayerInfoPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) : base(navigationService, apiService, pagedialogservice, seassonData)
         {
-            //ViewTeamRosterCommand = new DelegateCommand(async () =>
-            //{
-            //    //if (!string.IsNullOrEmpty(Player.TeamId)) await GetPlayerData(SearchEntry);
-            //});
+            ViewTeamRosterCommand = new DelegateCommand(async () =>
+            {
+                if (!string.IsNullOrEmpty(Player.TeamId)) await GoToTeamRosterPage();
+            });
         }
 
         public void Initialize(INavigationParameters parameters)
@@ -37,6 +40,21 @@ namespace MLBInfo.ViewModels
             if (parameters.ContainsKey("TeamId")) this.Player.TeamId = $"{parameters["TeamId"]}";
             if (parameters.ContainsKey("Twitter")) this.Player.TwitterId = $"{parameters["Twitter"]}";
             if (parameters.ContainsKey("Picture")) this.Player.PlayerPicture = $"{parameters["Picture"]}";
+        }
+        public async Task GoToTeamRosterPage()
+        {
+
+            try
+            {
+                var nav = new NavigationParameters();
+                nav.Add("TeamID", this.Player.TeamId);
+                await NavigationService.NavigateAsync(NavConstants.TeamRoster, nav);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"API EXCEPTION {ex}");
+            }
+
         }
     }
 }

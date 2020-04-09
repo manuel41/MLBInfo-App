@@ -142,4 +142,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\News1Icon.jfif" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_account_circle.png" />
+  </ItemGroup>
 </Project>

@@ -126,9 +126,6 @@ namespace MLBTeamsApp.ViewModels
             try
             {
                 var nav = new NavigationParameters();
-                nav.Add("StarSeason", TeamSelected.Season);
-                int x = Convert.ToInt32(TeamSelected.Season) + 1;
-                nav.Add("EndSeason", $"{x}");
                 nav.Add("TeamID", TeamSelected.TeamId);
                 await NavigationService.NavigateAsync(NavConstants.TeamRoster, nav);
             }

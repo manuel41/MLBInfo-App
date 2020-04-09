@@ -45,18 +45,25 @@ namespace MLBPlayersApp.Services
             var playerImage = await httpClient.GetStringAsync($"{player_image}{player.NameDisplayFirstLast.Replace(" ", "_")}");
             PlayerImageData playerImageData = JsonConvert.DeserializeObject<PlayerImageData>(playerImage);
 
-            player.PlayerPicture = playerImageData.PlayerImage[0].StrCutout;
+            if(playerImageData.PlayerImage != null)
+            {
+                player.PlayerPicture = (playerImageData.PlayerImage[0].StrCutout != null) ? playerImageData.PlayerImage[0].StrCutout : playerImageData.PlayerImage[0].StrThumb;
+            }
+            else
+            {
+                player.PlayerPicture = "ic_account_circle.png";
+            }
 
             return player;
         }
 
-        public async Task<IList<TeamRoster>> GetRowData(string startSeason, string endSeason, string teamId)
+        public async Task<IList<Row>> GetRowData(string teamId)
         {
             HttpClient httpClient = new HttpClient();
 
-            var result = await httpClient.GetStringAsync($"{url1}.roster_team_alltime.bam?start_season='{startSeason}'&end_season='{endSeason}'&team_id='{teamId}'");
-            var data = JsonConvert.DeserializeObject<TeamRosterExample>(result);
-            return data?.TeamRosterRosterTeamAlltime?.TeamRosterQueryResults?.TeamRoster;
+            var result = await httpClient.GetStringAsync($"{url1}.roster_40.bam?team_id='{teamId}'");
+            var data = JsonConvert.DeserializeObject<TeamRoster>(result);
+            return data?.Roster40.QueryResults.Row;
         }
 
         public async Task<List<Game>> GetUpcomingGames()
