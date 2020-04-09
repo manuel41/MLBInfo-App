@@ -84,17 +84,17 @@
             <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="Black" Grid.Column="2" Grid.Row="6" />
             <Image Source="twitter_icon.png" Grid.Row="7" Grid.Column="0" Style="{StaticResource SocialMediaIcons}">
                 <Image.GestureRecognizers>
-                    
+                    <TapGestureRecognizer Command="{Binding ViewMLBTwitterCommand}"/>
                 </Image.GestureRecognizers>
             </Image>
             <Image Source="github_icon.png" Grid.Row="7" Grid.Column="1" Style="{StaticResource SocialMediaIcons}" HeightRequest="40">
                 <Image.GestureRecognizers>
-
+                    <TapGestureRecognizer Command="{Binding ViewGitHubRepoCommand}"/>
                 </Image.GestureRecognizers>
             </Image>
             <Image Source="instagram_icon2.png" Grid.Row="7" Grid.Column="2" Style="{StaticResource SocialMediaIcons}">
                 <Image.GestureRecognizers>
-
+                    <TapGestureRecognizer Command="{Binding ViewMLBInstagramCommand}"/>
                 </Image.GestureRecognizers>
             </Image>
         </Grid>
