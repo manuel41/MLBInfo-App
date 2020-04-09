@@ -5,10 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MLBInfo.Views.PlayerPage"
-             BackgroundColor="#ececec">
+             BackgroundColor="#ececec"
+             x:Name="playersPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Players}" HasUnevenRows="True"
-                  SelectedItem="{Binding PlayerSelected, Mode=TwoWay}">
+        <ListView ItemsSource="{Binding Players}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
             <ListView.Header>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -29,10 +29,10 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding NameDisplayFirstLast, StringFormat='Player name: {0}'}" FontAttributes="Bold"/>
-                            <Label Text="{Binding BirthCountry, StringFormat='Birth country: {0}'}"/>
-                            <Label Text="{Binding TeamFull, StringFormat='Team: {0}'}"/>
-                            <Image Source="{Binding PlayerPicture}" HeightRequest="120" WidthRequest="120"/>
+                            <Label Text="{Binding NameDisplayFirstLast}" FontAttributes="Bold" TextColor="Black" FontSize="20" HorizontalOptions="Center"/>
+                            <Label Text="{Binding TeamFull, StringFormat='Team: {0}'}" IsVisible="{Binding IsVisible}"/>
+                            <Image Source="{Binding PlayerPicture}" HeightRequest="180" WidthRequest="180"/>
+                            <Button Text="View Info" Command="{Binding Path=BindingContext.ViewPlayerInfoCommand, Source={x:Reference playersPage}}" IsVisible="{Binding IsVisible}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

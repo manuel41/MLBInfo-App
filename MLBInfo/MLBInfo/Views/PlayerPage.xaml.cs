@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MLBPlayersApp.Models;
+using MLBPlayersApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,14 @@ namespace MLBInfo.Views
         public PlayerPage()
         {
             InitializeComponent();
+        }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var vm = BindingContext as PlayersPageViewModel;
+            var player = e.Item as Player;
+
+            vm.HideOrShowPlayer(player);
         }
     }
 }

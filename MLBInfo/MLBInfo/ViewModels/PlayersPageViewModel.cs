@@ -23,23 +23,26 @@ namespace MLBPlayersApp.ViewModels
     public class PlayersPageViewModel :BaseViewModel, INotifyPropertyChanged
     {
         public ObservableCollection<Player> Players { get; set; }
+
         public PlayerData Player { get; set; }
 
-        public Player playerSelected;
+        //public Player playerSelected;
 
-        public Player PlayerSelected
-        {
-            get
-            {
-                return playerSelected;
-            }
-            set
-            {
-                playerSelected = value;
-                if (playerSelected != null) ViewPlayerInfoCommand.Execute();
-                playerSelected = null;
-            }
-        }
+        //public Player PlayerSelected
+        //{
+        //    get
+        //    {
+        //        return playerSelected;
+        //    }
+        //    set
+        //    {
+        //        playerSelected = value;
+        //        if (playerSelected != null) ViewPlayerInfoCommand.Execute();
+        //        playerSelected = null;
+        //    }
+        //}
+
+        private Player oldPlayer;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public string SearchEntry { get; set; }
@@ -82,8 +85,8 @@ namespace MLBPlayersApp.ViewModels
             if (await this.HasInternet())
             {
                 var nav = new NavigationParameters();
-                nav.Add("Picture", playerSelected.PlayerPicture);
-                Player = await ApiService.GetPlayerData(playerSelected.PlayerId);
+                nav.Add("Picture", oldPlayer.PlayerPicture);
+                Player = await ApiService.GetPlayerData(oldPlayer.PlayerId);
                 nav.Add("Name", Player.NameDisplayFirstLast);
                 nav.Add("TeamName", Player.TeamName);
                 nav.Add("PrimaryPosition", Player.PrimaryPosition);
@@ -96,6 +99,34 @@ namespace MLBPlayersApp.ViewModels
                 nav.Add("Twitter", Player.TwitterId);
                 await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
             }
+        }
+
+        public void HideOrShowPlayer(Player player)
+        {
+            if (oldPlayer == player)
+            {
+                player.IsVisible = !player.IsVisible;
+                UpdatePlayersList(player);
+            }
+            else
+            {
+                if(oldPlayer != null)
+                {
+                    oldPlayer.IsVisible = false;
+                    UpdatePlayersList(oldPlayer);
+                }
+                player.IsVisible = true;
+                UpdatePlayersList(player);
+
+            }
+            oldPlayer = player;
+        }
+
+        private void UpdatePlayersList(Player player)
+        {
+            int index = Players.IndexOf(player);
+            Players.Remove(player);
+            Players.Insert(index, player);
         }
     }
 }

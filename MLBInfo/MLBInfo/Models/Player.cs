@@ -100,5 +100,8 @@ namespace MLBPlayersApp.Models
 
         [JsonIgnore]
         public string AboutPlayer { get; set; }
+
+        [JsonIgnore]
+        public bool IsVisible { get; set; } = false;
     }
 }
