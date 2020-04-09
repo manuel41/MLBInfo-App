@@ -2,7 +2,9 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"                     
              x:Class="MLBInfo.Views.TabbedHomePage"
-             xmlns:local="clr-namespace:MLBInfo.Views">
+             xmlns:local="clr-namespace:MLBInfo.Views"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom">
     <local:TeamPage Title="Teams"/>
     <local:PlayerPage Title="Players"/>
     <local:MLBHomePage/>
