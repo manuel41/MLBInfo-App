@@ -11,7 +11,7 @@
 
             <ListView.Header>
                 <StackLayout Margin="40">
-                    <Label Text="Team-Roster" TextColor="White" FontSize="Title" HorizontalOptions="Center" TextDecorations="Underline"/>
+                    <Label Text="Team-Roster" TextColor="Black" FontSize="Title" HorizontalOptions="Center" TextDecorations="Underline"/>
                 </StackLayout>
             </ListView.Header>
 

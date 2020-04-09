@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:CustomizationsApp.Effects"
              mc:Ignorable="d"
              x:Class="MLBInfo.Views.PlayerPage"
              BackgroundColor="#ececec">
@@ -18,11 +19,16 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
-
                     <Entry Text="{Binding SearchEntry}" Placeholder="Player name" Grid.Column="0" Grid.Row="0">
-                  
+                        <Entry.Effects>
+                            <local:RemoveLineEffect/>
+
+                        </Entry.Effects>
                     </Entry>
-                    <Button Text="Search" Command="{Binding SearchPlayerCommand}" Grid.Column="0" Grid.Row="1"/>
+                   
+                    
+
+              <Button Text="Search" Command="{Binding SearchPlayerCommand}" Grid.Column="0" Grid.Row="1"/>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
