@@ -26,6 +26,7 @@
                     <Picker Title="Select Season" TitleColor="Black" TextColor="Black" ItemsSource="{Binding SeassonsFromViewModelCollector}" ItemDisplayBinding="{Binding Year}" SelectedItem="{Binding SeassonSelected}"  Grid.Column="0" Grid.Row="0"/>
                     <Label Text="{Binding WSeasson}"  TextColor="Black" Grid.Column="0" Grid.Row="1"/>
                     <BoxView HorizontalOptions="FillAndExpand" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalOptions="Center" HeightRequest="1" Color="Black"/>
+                    <Image Source="calendar_icon.png" Grid.Column="1" Grid.Row="0" HeightRequest="10"/>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>

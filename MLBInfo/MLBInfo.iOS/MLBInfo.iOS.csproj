@@ -157,4 +157,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\search_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\calendar_icon.png" />
+  </ItemGroup>
 </Project>
