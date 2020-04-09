@@ -9,7 +9,7 @@
              BackgroundColor="#ececec"
              x:Name="playersPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Players}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
+        <ListView ItemsSource="{Binding Players}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped" CachingStrategy="RecycleElement">
             <ListView.Header>
                 <Grid Margin="20">
                     <Grid.RowDefinitions>

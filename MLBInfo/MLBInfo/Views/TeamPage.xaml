@@ -11,7 +11,7 @@
              x:Name="teamsPage">
     <ContentPage.Content>
 
-        <ListView ItemsSource="{Binding Teams}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
+        <ListView ItemsSource="{Binding Teams}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped" CachingStrategy="RecycleElement">
             <ListView.Header>
                 <Grid ColumnSpacing="10">
                     <Grid.RowDefinitions>
