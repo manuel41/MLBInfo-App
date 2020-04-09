@@ -34,7 +34,7 @@
             <Label Text="{Binding Player.BirthCountry, StringFormat='Birth country: {0}'}" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="45,10"/>
             <Label Text="{Binding Player.Status, StringFormat='Status: {0}'}" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Padding="45,10"/>
 
-            <Button Text="Team Roster" Command="{Binding ViewTeamRosterCommand}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="30" WidthRequest="200"/>
+            <Button Text="Team Roster" Command="{Binding ViewTeamRosterCommand}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ButtonStyle}"/>
 
             <Image Source="twitter_icon.png" Grid.Column="0" Grid.Row="9" Margin="0,40"/>
             <Label Text="{Binding Player.TwitterId}" Grid.Column="1" Grid.Row="9" VerticalOptions="Center" HorizontalOptions="Start" Padding="40,0"/>

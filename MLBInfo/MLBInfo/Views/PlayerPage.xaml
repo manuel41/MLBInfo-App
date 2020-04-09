@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Players}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
             <ListView.Header>
-                <Grid>
+                <Grid Margin="20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -19,10 +19,10 @@
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Entry Text="{Binding SearchEntry}" Placeholder="Player name" Grid.Column="0" Grid.Row="0">
+                    <Entry Text="{Binding SearchEntry}" Placeholder="Player name" Grid.Column="0" Grid.Row="0" WidthRequest="300" HorizontalOptions="Center">
                   
                     </Entry>
-                    <Button Text="Search" Command="{Binding SearchPlayerCommand}" Grid.Column="0" Grid.Row="1"/>
+                    <Button Text="Search" Command="{Binding SearchPlayerCommand}" Grid.Column="0" Grid.Row="1" Style="{StaticResource ButtonStyle}" WidthRequest="300"/>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
@@ -30,9 +30,9 @@
                     <ViewCell>
                         <StackLayout>
                             <Label Text="{Binding NameDisplayFirstLast}" FontAttributes="Bold" TextColor="Black" FontSize="20" HorizontalOptions="Center"/>
-                            <Label Text="{Binding TeamFull, StringFormat='Team: {0}'}" IsVisible="{Binding IsVisible}"/>
-                            <Image Source="{Binding PlayerPicture}" HeightRequest="180" WidthRequest="180"/>
-                            <Button Text="View Info" Command="{Binding Path=BindingContext.ViewPlayerInfoCommand, Source={x:Reference playersPage}}" IsVisible="{Binding IsVisible}"/>
+                            <Image Source="{Binding PlayerPicture}" HeightRequest="180" WidthRequest="180" Margin="10"/>
+                            <Label Text="{Binding TeamFull, StringFormat='Team: {0}'}" IsVisible="{Binding IsVisible}" HorizontalOptions="Center"/>
+                            <Button Text="View Info" Command="{Binding Path=BindingContext.ViewPlayerInfoCommand, Source={x:Reference playersPage}}" IsVisible="{Binding IsVisible}" Style="{StaticResource ButtonStyle}" Margin="10"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
