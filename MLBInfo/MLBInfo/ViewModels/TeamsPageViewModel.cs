@@ -70,7 +70,7 @@ namespace MLBTeamsApp.ViewModels
             {
 
                 seassonSelected = value;
-                if (SeassonSelected != null)  GetTeamInformationCommand.Execute(); WSeasson = "La temporada seleccionada: " + seassonSelected.Year;                
+                if (SeassonSelected != null)  GetTeamInformationCommand.Execute(); WSeasson = $"Selected Season: {seassonSelected.Year}";                
             }
 
         }
