@@ -68,9 +68,15 @@
                 </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="Black" Grid.Column="0" Grid.Row="6" />
+            
+             <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="Black" Grid.Column="0" Grid.Row="6" />
             <Label Text="About-Us" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" Grid.Column="1" Grid.Row="6"/>
             <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="Black" Grid.Column="2" Grid.Row="6" />
+            <StackLayout Spacing="40" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ImageButton Source="x"/>
+                <ImageButton Source="x"/>
+                <ImageButton Source="x"/>
+            </StackLayout>
         </Grid>
         
     </ContentPage.Content>

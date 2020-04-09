@@ -35,7 +35,8 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding NameDisplayFirstLast}" FontAttributes="Bold" TextColor="Black" FontSize="20" HorizontalOptions="Center"/>
+
+                            <Label Text="{Binding NameDisplayFirstLast}" FontAttributes="Bold" TextColor="Black" TextDecorations="Underline"  FontSize="20" HorizontalOptions="Center"/>
                             <Image Source="{Binding PlayerPicture}" HeightRequest="180" WidthRequest="180" Margin="10"/>
                             <Label Text="{Binding TeamFull, StringFormat='Team: {0}'}" IsVisible="{Binding IsVisible}" HorizontalOptions="Center"/>
                             <Button Text="View Info" Command="{Binding Path=BindingContext.ViewPlayerInfoCommand, Source={x:Reference playersPage}}" IsVisible="{Binding IsVisible}" Style="{StaticResource ButtonStyle}" Margin="10"/>
