@@ -29,7 +29,7 @@
             <BoxView  BackgroundColor="#084177"    Grid.Column="1" Grid.Row="0"  Margin="56,4,20,10" CornerRadius="10"/>
             <Label Text="{Binding Player.NameDisplayFirstLast, StringFormat='Player name: {0}'}" TextColor="White" FontAttributes="Bold" Grid.Column="1" Grid.Row="0" Padding="60,15"/>
 
-            <BoxView  BackgroundColor="#084177"   Grid.Column="1" Grid.Row="1"  Margin="56,4,20,20" CornerRadius="10"/>
+            <BoxView  BackgroundColor="#084177"   Grid.Column="1" Grid.Row="1"  Margin="56,8,20,10" CornerRadius="10"/>
             <Label Text="{Binding Player.TeamName, StringFormat='Team: {0}'}" FontAttributes="Bold"  TextColor="White" Grid.Column="1" Grid.Row="1" Padding="60,15"/>
 
             <BoxView  BackgroundColor="#084177"  Grid.Column="1" Grid.Row="2"  Margin="56,4,20,20" CornerRadius="10"/>
@@ -38,13 +38,13 @@
                 <BoxView BackgroundColor="#e1e1e1" Margin="20,0,2,20" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HeightRequest="140" WidthRequest="140" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
                 <Image Source="{Binding Player.PlayerPicture}" Margin="23,0,5,10" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HeightRequest="140" WidthRequest="140" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
 
-            <BoxView  BackgroundColor="#084177"   Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  Margin="20,0,230,20" CornerRadius="10"/>
+            <BoxView  BackgroundColor="#084177"   Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  Margin="20,0,130,20" CornerRadius="10"/>
             <Label Text="{Binding Player.JerseyNumber, StringFormat='Jersey number: {0}'}" TextColor="White" FontAttributes="Bold" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Padding="45,10"/>
 
-            <BoxView  BackgroundColor="#084177"   Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"  Margin="20,0,270,20" CornerRadius="10"/>
+            <BoxView  BackgroundColor="#084177"   Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"  Margin="20,0,170,20" CornerRadius="10"/>
             <Label Text="{Binding Player.Weight, StringFormat='Weight: {0}'}" TextColor="White" FontAttributes="Bold" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="45,10"/>
 
-            <BoxView  BackgroundColor="#084177"   Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="20,0,290,20" CornerRadius="10"/>
+            <BoxView  BackgroundColor="#084177"   Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="20,0,190,20" CornerRadius="10"/>
             <Label Text="{Binding Player.Age, StringFormat='Age: {0}'}" TextColor="White" FontAttributes="Bold" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Padding="45,10"/>
 
             <BoxView  BackgroundColor="#084177"  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Margin="20,0,137,20" CornerRadius="10"/>
