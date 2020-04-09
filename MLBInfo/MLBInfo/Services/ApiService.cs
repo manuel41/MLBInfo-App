@@ -42,7 +42,7 @@ namespace MLBPlayersApp.Services
                 if (playerImageData.PlayerImage != null)
                 {
                     player.PlayerPicture = (playerImageData.PlayerImage[0].StrCutout != null) ? playerImageData.PlayerImage[0].StrCutout : playerImageData.PlayerImage[0].StrThumb;
-                    player.AboutPlayer = playerImageData?.PlayerImage[0].StrDescriptionEN;
+                    player.AboutPlayer = (!string.IsNullOrEmpty(playerImageData.PlayerImage[0].StrDescriptionEN)) ? playerImageData.PlayerImage[0].StrDescriptionEN : "No player description available.";
                 }
                 else
                 {
