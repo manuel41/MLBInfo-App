@@ -9,7 +9,7 @@
              BackgroundColor="#ececec"
              x:Name="playersPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Players}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped" CachingStrategy="RecycleElement">
+        <ListView ItemsSource="{Binding Players}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
             <ListView.Header>
                 <Grid Margin="20">
                     <Grid.RowDefinitions>
@@ -41,6 +41,7 @@
                             <Label Text="{Binding NameDisplayFirstLast}" FontAttributes="Bold" TextColor="Black" TextDecorations="Underline"  FontSize="20" HorizontalOptions="Center"/>
                             <Image Source="{Binding PlayerPicture}" HeightRequest="180" WidthRequest="180" Margin="10"/>
                             <Label Text="{Binding TeamFull, StringFormat='Team: {0}'}" IsVisible="{Binding IsVisible}" HorizontalOptions="Center"/>
+                            <Label Text="{Binding AboutPlayer, StringFormat='About player: {0}'}" IsVisible="{Binding IsVisible}" Margin="20"/>
                             <Button Text="View Info" Command="{Binding Path=BindingContext.ViewPlayerInfoCommand, Source={x:Reference playersPage}}" IsVisible="{Binding IsVisible}" Style="{StaticResource ButtonStyle}" Margin="10"/>
                         </StackLayout>
                     </ViewCell>
