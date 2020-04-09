@@ -155,6 +155,6 @@
     <BundleResource Include="Resources\player_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\search_icon.png" />
+    <AndroidResource Include="Resources\search_icon.png" />
   </ItemGroup>
 </Project>
