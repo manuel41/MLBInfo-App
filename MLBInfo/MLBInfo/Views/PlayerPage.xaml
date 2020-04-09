@@ -3,32 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:CustomizationsApp.Effects"
              mc:Ignorable="d"
-             x:Class="MLBInfo.Views.PlayerPage">
+             x:Class="MLBInfo.Views.PlayerPage"
+             BackgroundColor="#ececec"
+             x:Name="playersPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Players}" HasUnevenRows="True"
-                  SelectedItem="{Binding PlayerSelected, Mode=TwoWay}">
+        <ListView ItemsSource="{Binding Players}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
             <ListView.Header>
-                <Grid>
+                <Grid Margin="20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
+                    <Entry Text="{Binding SearchEntry}" Placeholder="Player name" Grid.Column="0" Grid.Row="0">
+                        <Entry.Effects>
+                            <local:RemoveLineEffect/>
 
-                    <Entry Text="{Binding SearchEntry}" Placeholder="Player name" Grid.Column="0" Grid.Row="0"/>
-                    <Button Text="Search" Command="{Binding SearchPlayerCommand}" Grid.Column="0" Grid.Row="1"/>
+                        </Entry.Effects>
+                    </Entry>
+                    <Image Source="search_icon.png" Grid.Column="1" Grid.Row="0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SearchPlayerCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding NameDisplayFirstLast, StringFormat='Player name: {0}'}" FontAttributes="Bold"/>
-                            <Label Text="{Binding BirthCountry, StringFormat='Birth country: {0}'}"/>
-                            <Label Text="{Binding TeamFull, StringFormat='Team: {0}'}"/>
+
+                            <Label Text="{Binding NameDisplayFirstLast}" FontAttributes="Bold" TextColor="Black" TextDecorations="Underline"  FontSize="20" HorizontalOptions="Center"/>
+                            <Image Source="{Binding PlayerPicture}" HeightRequest="180" WidthRequest="180" Margin="10"/>
+                            <Label Text="{Binding TeamFull, StringFormat='Team: {0}'}" IsVisible="{Binding IsVisible}" HorizontalOptions="Center"/>
+                            <Label Text="{Binding AboutPlayer, StringFormat='About player: {0}'}" IsVisible="{Binding IsVisible}" Margin="20"/>
+                            <Button Text="View Info" Command="{Binding Path=BindingContext.ViewPlayerInfoCommand, Source={x:Reference playersPage}}" IsVisible="{Binding IsVisible}" Style="{StaticResource ButtonStyle}" Margin="10"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

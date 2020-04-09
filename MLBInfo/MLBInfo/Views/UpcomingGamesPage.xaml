@@ -5,7 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MLBInfo.Views.UpcomingGamesPage"
-             BackgroundColor="#005082">
+             BackgroundColor="#ececec">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Image" x:Key="SocialMediaIcons">
+                <Setter Property="HeightRequest" Value="100"/>
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Grid.RowSpan" Value="2"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="10">
             <Grid.RowDefinitions>
@@ -23,55 +33,70 @@
             </Grid.ColumnDefinitions>
 
 
-            <Label Text="MLB-App" Style="{StaticResource LabelTitleStyle}" HorizontalOptions="Center" TextColor="White" Grid.Row="0" Grid.ColumnSpan="3"/>
-            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="White" Grid.Column="0" Grid.Row="1" />
-            <Label Text="News" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Grid.Column="1" Grid.Row="1"/>
-            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="White" Grid.Column="2" Grid.Row="1" />
-        
-            
-            <StackLayout  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" HeightRequest="227" BackgroundColor="White">
-             
-                <ListView ItemsSource="{Binding UpcomingGamesList}" HasUnevenRows="True" BackgroundColor="#002D72">
-                <ListView.Header>
+            <Label Text="MLB-Info" Style="{StaticResource LabelTitleStyle}" HorizontalOptions="Center" TextColor="Black" Grid.Row="0" Grid.ColumnSpan="3"/>
+            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="Black" Grid.Column="0" Grid.Row="1" />
+            <Label Text="News" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" Grid.Column="1" Grid.Row="1"/>
+            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="Black" Grid.Column="2" Grid.Row="1" />
 
-                        <Label Text="Upcoming Games" FontSize="Title" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20" TextColor="White"/>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
+
+            <StackLayout  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" HeightRequest="238" BackgroundColor="#e1e1e1">
+
+                <ListView ItemsSource="{Binding UpcomingGamesList}" HasUnevenRows="True" BackgroundColor="#e1e1e1" CachingStrategy="RecycleElement">
+                    <ListView.Header>
+                        <Label Text="Upcoming Games" FontSize="Title" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20" TextColor="Black"/>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
                             
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                 </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="4*"/>
-                                    <ColumnDefinition Width="3*"/>
-                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                     </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
                              
-                                <Label Text="Home" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" TextColor="White"/>
-                                <Label Text="Away" Grid.Column="2" Grid.Row="0" HorizontalOptions="Center" TextColor="White"/>
-                                <Image Source="{Binding HomeTeamLogo}" HeightRequest="80" WidthRequest="80" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center"/>
-                                <Label Text="VS" FontSize="Medium" FontAttributes="Bold" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" TextColor="White"/>
-                                <Image Source="{Binding AwayTeamLogo}" HeightRequest="80" WidthRequest="80" Grid.Column="2" Grid.Row="1" HorizontalOptions="Center"/>
-                                <Label Text="{Binding HomeTeamFull}" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" TextColor="White"/>
-                                <Label Text="{Binding AwayTeamFull}" Grid.Column="2" Grid.Row="2" HorizontalOptions="Center" TextColor="White"/>
-                                <Label Text="{Binding GameDate}" Grid.Column="1" Grid.Row="3" HorizontalOptions="Center" TextColor="White"/>
-                                <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="White" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3"/>
-                                </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                                    <Label Text="Home" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" TextColor="Black"/>
+                                    <Label Text="Away" Grid.Column="2" Grid.Row="0" HorizontalOptions="Center" TextColor="Black"/>
+                                    <Image Source="{Binding HomeTeamLogo}" HeightRequest="80" WidthRequest="80" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center"/>
+                                    <Label Text="VS" FontSize="Medium" FontAttributes="Bold" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" TextColor="Black"/>
+                                    <Image Source="{Binding AwayTeamLogo}" HeightRequest="80" WidthRequest="80" Grid.Column="2" Grid.Row="1" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding HomeTeamFull}" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" TextColor="Black"/>
+                                    <Label Text="{Binding AwayTeamFull}" Grid.Column="2" Grid.Row="2" HorizontalOptions="Center" TextColor="Black"/>
+                                    <Label Text="{Binding GameDate}" Grid.Column="1" Grid.Row="3" HorizontalOptions="Center" TextColor="Black"/>
+                                    <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="Gray" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3"/>
+                                    </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="White" Grid.Column="0" Grid.Row="6" />
-            <Label Text="About-Us" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Grid.Column="1" Grid.Row="6"/>
-            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="White" Grid.Column="2" Grid.Row="6" />
+            
+             <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="Black" Grid.Column="0" Grid.Row="6" />
+            <Label Text="About-Us" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" Grid.Column="1" Grid.Row="6"/>
+            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="Black" Grid.Column="2" Grid.Row="6" />
+            <Image Source="twitter_icon.png" Grid.Row="7" Grid.Column="0" Style="{StaticResource SocialMediaIcons}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ViewMLBTwitterCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="github_icon.png" Grid.Row="7" Grid.Column="1" Style="{StaticResource SocialMediaIcons}" HeightRequest="40">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ViewGitHubRepoCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="instagram_icon2.png" Grid.Row="7" Grid.Column="2" Style="{StaticResource SocialMediaIcons}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ViewMLBInstagramCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
         </Grid>
         
     </ContentPage.Content>

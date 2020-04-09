@@ -145,4 +145,25 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_account_circle.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\team_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\games_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\player_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\search_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\calendar_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\github_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\instagram_icon2.png" />
+  </ItemGroup>
 </Project>

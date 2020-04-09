@@ -17,45 +17,84 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-
+using MLBInfo.Models;
 
 namespace MLBTeamsApp.ViewModels
 {
-   public class TeamsPageViewModel : BaseViewModel, INotifyPropertyChanged
+    public class TeamsPageViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public ObservableCollection<Team> Teams { get; set; }
+
+        public IList<Seasson> SeassonsFromViewModelCollector { get; set; }
+
+        SeassonData SeassonD { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string Entry { get; set; }
 
-        public Team teamSelected;
-       
+        //public Team teamSelected;
+
+        private Team oldTeam;
+        
         public string SecondEntry { get; set; }
-        public bool IsActiveCheckBox { get; set; }
         public string SearchEntry { get; set; }
         public DelegateCommand GetTeamInformationCommand { get; set; }
         public DelegateCommand NavigateToTeamRoster { get; set; }
-        public Team TeamSelected
+        //public Team TeamSelected
+        //{
+
+        //    get
+        //    {
+        //        return teamSelected;
+        //    }
+
+
+        //    set
+        //    {
+        //        teamSelected = value;
+
+        //        if (teamSelected != null) NavigateToTeamRoster.Execute();   
+        //    }
+
+        //}
+
+        Seasson seassonSelected;
+        public Seasson SeassonSelected
         {
-
-            get
-            {
-                return teamSelected;
+            get {
+                return seassonSelected;
+            
             }
-
-
-            set
+            set 
             {
-                teamSelected = value;
 
-                if (teamSelected != null) NavigateToTeamRoster.Execute();
+                seassonSelected = value;
+                if (SeassonSelected != null)  GetTeamInformationCommand.Execute(); WSeasson = $"Selected Season: {seassonSelected.Year}";                
             }
 
         }
+        public string wSeasson;
+        public string WSeasson {
 
-        public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
+            get {
+
+                return wSeasson;
+            }
+            set {
+
+
+              if(wSeasson != value)  wSeasson = value;
+            
+            }
+        
+        
+        }
+        public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) : base(navigationService, apiService, pagedialogservice, seassonData)
         {
+            
+            SeassonsFromViewModelCollector = seassonData.Seassons;
             GetTeamInformationCommand = new DelegateCommand(async() =>
             {
               await GetPlayerData();
@@ -74,8 +113,7 @@ namespace MLBTeamsApp.ViewModels
             {
                 try
                 {
-                    Entry = (IsActiveCheckBox) ? "Y" : "N";
-                    Teams = new ObservableCollection<Team>(await ApiService.GetTeamsList(Entry, SecondEntry));
+                    Teams = new ObservableCollection<Team>(await ApiService.GetTeamsList(SeassonSelected.Year));
                 }
                 catch (Exception ex)
                 {
@@ -90,7 +128,7 @@ namespace MLBTeamsApp.ViewModels
             try
             {
                 var nav = new NavigationParameters();
-                nav.Add("TeamID", TeamSelected.TeamId);
+                nav.Add("TeamID", oldTeam.TeamId);
                 await NavigationService.NavigateAsync(NavConstants.TeamRoster, nav);
             }
             catch (Exception ex)
@@ -100,10 +138,36 @@ namespace MLBTeamsApp.ViewModels
 
         }
 
+        public void HideOrShowTeamInfo(Team team)
+        {
+            if (oldTeam == team)
+            {
+                team.IsVisible = !team.IsVisible;
+                UpdateTeamsList(team);
+            }
+            else
+            {
+                if (oldTeam != null)
+                {
+                    oldTeam.IsVisible = false;
+                    UpdateTeamsList(oldTeam);
+                }
+                team.IsVisible = true;
+                UpdateTeamsList(team);
+
+            }
+            oldTeam = team;
+        }
+
+        private void UpdateTeamsList(Team team)
+        {
+            int index = Teams.IndexOf(team);
+            Teams.Remove(team);
+            Teams.Insert(index, team);
+        }
 
 
 
-
-   }
+    }
 }
 

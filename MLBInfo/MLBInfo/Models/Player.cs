@@ -94,5 +94,14 @@ namespace MLBPlayersApp.Models
 
         [JsonProperty("active_sw")]
         public string ActiveSw { get; set; }
+
+        [JsonIgnore]
+        public string PlayerPicture { get; set; }
+
+        [JsonIgnore]
+        public string AboutPlayer { get; set; }
+
+        [JsonIgnore]
+        public bool IsVisible { get; set; } = false;
     }
 }

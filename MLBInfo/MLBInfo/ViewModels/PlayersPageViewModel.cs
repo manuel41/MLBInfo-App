@@ -23,30 +23,18 @@ namespace MLBPlayersApp.ViewModels
     public class PlayersPageViewModel :BaseViewModel, INotifyPropertyChanged
     {
         public ObservableCollection<Player> Players { get; set; }
+
         public PlayerData Player { get; set; }
 
-        public Player playerSelected;
 
-        public Player PlayerSelected
-        {
-            get
-            {
-                return playerSelected;
-            }
-            set
-            {
-                playerSelected = value;
-                if (playerSelected != null) ViewPlayerInfoCommand.Execute();
-                playerSelected = null;
-            }
-        }
+        private Player oldPlayer;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public string SearchEntry { get; set; }
         public DelegateCommand SearchPlayerCommand { get; set; }
         public DelegateCommand ViewPlayerInfoCommand { get; set; }
 
-        public PlayersPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
+        public PlayersPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) : base(navigationService, apiService, pagedialogservice, seassonData)
         {
             SearchPlayerCommand = new DelegateCommand(async() =>
             {
@@ -66,8 +54,8 @@ namespace MLBPlayersApp.ViewModels
             {
                 try
                 {
-                    QueryResults results = await ApiService.GetPlayersList(search);
-                    Players = new ObservableCollection<Player>(results.PlayersList as List<Player>);
+                    var results = await ApiService.GetPlayersList(search);
+                    Players = new ObservableCollection<Player>(results as List<Player>);
                 }
                 catch (Exception ex)
                 {
@@ -82,7 +70,8 @@ namespace MLBPlayersApp.ViewModels
             if (await this.HasInternet())
             {
                 var nav = new NavigationParameters();
-                Player = await ApiService.GetPlayerData(playerSelected.PlayerId);
+                nav.Add("Picture", oldPlayer.PlayerPicture);
+                Player = await ApiService.GetPlayerData(oldPlayer.PlayerId);
                 nav.Add("Name", Player.NameDisplayFirstLast);
                 nav.Add("TeamName", Player.TeamName);
                 nav.Add("PrimaryPosition", Player.PrimaryPosition);
@@ -93,9 +82,36 @@ namespace MLBPlayersApp.ViewModels
                 nav.Add("Status", Player.Status);
                 nav.Add("TeamId", Player.TeamId);
                 nav.Add("Twitter", Player.TwitterId);
-                nav.Add("Picture", Player.PlayerPicture);
                 await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
             }
+        }
+
+        public void HideOrShowPlayer(Player player)
+        {
+            if (oldPlayer == player)
+            {
+                player.IsVisible = !player.IsVisible;
+                UpdatePlayersList(player);
+            }
+            else
+            {
+                if(oldPlayer != null)
+                {
+                    oldPlayer.IsVisible = false;
+                    UpdatePlayersList(oldPlayer);
+                }
+                player.IsVisible = true;
+                UpdatePlayersList(player);
+
+            }
+            oldPlayer = player;
+        }
+
+        private void UpdatePlayersList(Player player)
+        {
+            int index = Players.IndexOf(player);
+            Players.Remove(player);
+            Players.Insert(index, player);
         }
     }
 }

@@ -86,6 +86,12 @@ namespace MLBInfo.Models
 
         [JsonProperty("name_full")]
         public string NameFull { get; set; }
+
+        [JsonIgnore]
+        public string PlayerPicture { get; set; }
+
+        [JsonIgnore]
+        public string AboutPlayer { get; set; }
     }
 
     public class RosterQueryResults

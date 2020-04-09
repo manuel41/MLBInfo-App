@@ -1,4 +1,5 @@
-﻿using MLBPlayersApp.Services;
+﻿using MLBInfo.Models;
+using MLBPlayersApp.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -16,12 +17,21 @@ namespace MLBInfo.ViewModels
         protected IApiService ApiService { get; set; }
         protected IPageDialogService PageDialogService { get; set; }
 
+        protected SeassonData SeassonData { get; set; }
+        public BaseViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData)
+        {
+            NavigationService = navigationService;
+            ApiService = apiService;
+            PageDialogService = pagedialogservice;
+            SeassonData = seassonData;
+            
+        }
+
         public BaseViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice)
         {
             NavigationService = navigationService;
             ApiService = apiService;
             PageDialogService = pagedialogservice;
-            
         }
 
         public async Task<bool> HasInternet()
