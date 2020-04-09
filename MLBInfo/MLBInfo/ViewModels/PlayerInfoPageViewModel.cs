@@ -16,7 +16,7 @@ namespace MLBInfo.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
         public DelegateCommand ViewTeamRosterCommand { get; set; }
-        public PlayerInfoPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
+        public PlayerInfoPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) : base(navigationService, apiService, pagedialogservice, seassonData)
         {
             //ViewTeamRosterCommand = new DelegateCommand(async () =>
             //{

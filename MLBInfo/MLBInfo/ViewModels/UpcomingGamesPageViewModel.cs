@@ -18,7 +18,7 @@ namespace MLBInfo.ViewModels
 
         public ObservableCollection<Game> UpcomingGamesList { get; set; }
 
-        public UpcomingGamesPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
+        public UpcomingGamesPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) : base(navigationService, apiService, pagedialogservice, seassonData)
         {
             
         }

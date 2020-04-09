@@ -17,20 +17,24 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-
+using MLBInfo.Models;
 
 namespace MLBTeamsApp.ViewModels
 {
-   public class TeamsPageViewModel : BaseViewModel, INotifyPropertyChanged
+    public class TeamsPageViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public ObservableCollection<Team> Teams { get; set; }
+
+        public IList<Seasson> SeassonsFromViewModelCollector { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string Entry { get; set; }
 
         public Team teamSelected;
-       
+
+        
         public string SecondEntry { get; set; }
         public bool IsActiveCheckBox { get; set; }
         public string SearchEntry { get; set; }
@@ -49,13 +53,45 @@ namespace MLBTeamsApp.ViewModels
             {
                 teamSelected = value;
 
-                if (teamSelected != null) NavigateToTeamRoster.Execute();
+                if (teamSelected != null) NavigateToTeamRoster.Execute();   
             }
 
         }
 
-        public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
+        Seasson seassonSelected;
+        public Seasson SeassonSelected
         {
+            get {
+                return seassonSelected;
+            
+            }
+            set 
+            {
+
+                seassonSelected = value;
+                if (SeassonSelected != null)  GetTeamInformationCommand.Execute(); WSeasson = "La temporada seleccionada: " + seassonSelected.Year;                
+            }
+
+        }
+        public string wSeasson;
+        public string WSeasson {
+
+            get {
+
+                return wSeasson;
+            }
+            set {
+
+
+              if(wSeasson != value)  wSeasson = value;
+            
+            }
+        
+        
+        }
+        public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) : base(navigationService, apiService, pagedialogservice, seassonData)
+        {
+            SeassonsFromViewModelCollector = seassonData.Seassons;
             GetTeamInformationCommand = new DelegateCommand(async() =>
             {
               await GetPlayerData();
@@ -75,7 +111,7 @@ namespace MLBTeamsApp.ViewModels
                 try
                 {
                     Entry = (IsActiveCheckBox) ? "Y" : "N";
-                    Teams = new ObservableCollection<Team>(await ApiService.GetTeamsList(Entry, SecondEntry));
+                    Teams = new ObservableCollection<Team>(await ApiService.GetTeamsList(Entry, SeassonSelected.Year));
                 }
                 catch (Exception ex)
                 {

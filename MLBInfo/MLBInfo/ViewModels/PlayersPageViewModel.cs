@@ -46,7 +46,7 @@ namespace MLBPlayersApp.ViewModels
         public DelegateCommand SearchPlayerCommand { get; set; }
         public DelegateCommand ViewPlayerInfoCommand { get; set; }
 
-        public PlayersPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) : base(navigationService, apiService, pagedialogservice)
+        public PlayersPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) : base(navigationService, apiService, pagedialogservice, seassonData)
         {
             SearchPlayerCommand = new DelegateCommand(async() =>
             {

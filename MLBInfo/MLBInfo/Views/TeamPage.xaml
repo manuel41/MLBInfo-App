@@ -22,13 +22,9 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Entry Text="{Binding SecondEntry}" PlaceholderColor="White" TextColor="White" Placeholder="Season" HorizontalOptions="Start" WidthRequest="290" Grid.Column="0" Grid.Row="0">
-                        <Entry.Effects>
-                            <local:RemoveLineEffect/>
-                        </Entry.Effects>
-                    </Entry>
+                    <Picker Title="Select one Seasson" TitleColor="White" TextColor="White" ItemsSource="{Binding SeassonsFromViewModelCollector}" ItemDisplayBinding="{Binding Year}" SelectedItem="{Binding SeassonSelected}"  Grid.Column="0" Grid.Row="0"/>
                     <Label Text="All/Regular?" TextColor="White" VerticalOptions="Center" Grid.Column="1" Grid.Row="0"/>
-                    <Button Text="Search" BackgroundColor="#7C2529" CornerRadius="20" Command="{Binding GetTeamInformationCommand}" Grid.Column="0" Grid.Row="1"/>
+                    <Label Text="{Binding WSeasson}"  TextColor="White" Grid.Column="0" Grid.Row="1"/>
                     <CheckBox IsChecked="{Binding IsActiveCheckBox}" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center"/>
                     <BoxView HorizontalOptions="FillAndExpand" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalOptions="Center" HeightRequest="1" Color="White"/>
                 </Grid>
@@ -43,7 +39,7 @@
                             <Label Text="{Binding Division, StringFormat='Division: {0}'}" TextColor="White"/>
                             <Label Text="{Binding PhoneNumber, StringFormat='Number: {0}'}" TextColor="White"/>
                             <Label Text="{Binding WebsiteUrl, StringFormat='WebsiteUrl: {0}'}" TextColor="White"/>
-
+                            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="White"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

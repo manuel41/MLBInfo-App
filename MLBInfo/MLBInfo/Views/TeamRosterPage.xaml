@@ -4,23 +4,25 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="MLBInfo.Views.TeamRosterPage">
+             x:Class="MLBInfo.Views.TeamRosterPage"
+             BackgroundColor="#005082">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding TeamRosters}">
+        <ListView ItemsSource="{Binding TeamRosters}" HasUnevenRows="True">
 
             <ListView.Header>
                 <StackLayout Margin="40">
-                    <Label Text="Team-Roster" FontSize="Title" HorizontalOptions="Center" TextColor="Black" TextDecorations="Underline"/>
+                    <Label Text="Team-Roster" TextColor="White" FontSize="Title" HorizontalOptions="Center" TextDecorations="Underline"/>
                 </StackLayout>
             </ListView.Header>
 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding NameFirstLast, StringFormat='Name = {0}'}" VerticalOptions="Center"/>
-                            <Label Text="{Binding PlayerId, StringFormat='ID = {0}'}" VerticalOptions="Center"/>
-                            <Label Text="{Binding PrimaryPosition, StringFormat='Position = {0}'}" VerticalOptions="Center"/>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding NameFirstLast, StringFormat='Name = {0}'}" TextColor="White" VerticalOptions="Center"/>
+                            <Label Text="{Binding PlayerId, StringFormat='ID = {0}'}" TextColor="White" VerticalOptions="Center"/>
+                            <Label Text="{Binding PrimaryPosition, StringFormat='Position = {0}'}" TextColor="White" VerticalOptions="Center"/>
+                            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="White"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

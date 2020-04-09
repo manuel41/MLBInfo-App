@@ -22,7 +22,7 @@ namespace MLBInfo.ViewModels
         public DelegateCommand GetTeamInformationCommand { get; set; }
 
         public DelegateCommand PopPage { get; set; }
-        public TeamRosterPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice) :base(navigationService, apiService, pagedialogservice)
+        public TeamRosterPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) :base(navigationService, apiService, pagedialogservice, seassonData)
         {
 
         }
