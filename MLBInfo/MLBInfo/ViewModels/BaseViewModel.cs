@@ -27,6 +27,13 @@ namespace MLBInfo.ViewModels
             
         }
 
+        public BaseViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice)
+        {
+            NavigationService = navigationService;
+            ApiService = apiService;
+            PageDialogService = pagedialogservice;
+        }
+
         public async Task<bool> HasInternet()
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
