@@ -145,4 +145,16 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_account_circle.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\team_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\games_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\player_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search_icon.png" />
+  </ItemGroup>
 </Project>

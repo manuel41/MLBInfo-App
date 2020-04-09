@@ -5,8 +5,8 @@
              xmlns:local="clr-namespace:MLBInfo.Views"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom">
-    <local:TeamPage Title="Teams"/>
-    <local:UpcomingGamesPage Title="Upcoming Games"/>
-    <local:PlayerPage Title="Players"/>
+    <local:TeamPage Title="Teams" IconImageSource="team_icon.png"/>
+    <local:UpcomingGamesPage Title="Upcoming Games" IconImageSource="games_icon.png"/>
+    <local:PlayerPage Title="Players" IconImageSource="player_icon.png"/>
    
 </TabbedPage>
