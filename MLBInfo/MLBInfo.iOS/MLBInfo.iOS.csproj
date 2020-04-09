@@ -160,4 +160,10 @@
   <ItemGroup>
     <AndroidResource Include="Resources\calendar_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\github_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\instagram_icon2.png" />
+  </ItemGroup>
 </Project>
