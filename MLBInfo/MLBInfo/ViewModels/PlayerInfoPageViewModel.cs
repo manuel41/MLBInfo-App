@@ -33,11 +33,18 @@ namespace MLBInfo.ViewModels
             {
                 if(await this.HasInternet())
                 {
-                    try
+                    if (!string.IsNullOrEmpty(Player.TwitterId))
                     {
-                        await Browser.OpenAsync(new Uri($"{twitter_url}{Player.TwitterId.Replace("@", "")}"), BrowserLaunchMode.SystemPreferred);
+                        try
+                        {
+                            await Browser.OpenAsync(new Uri($"{twitter_url}{Player.TwitterId.Replace("@", "")}"), BrowserLaunchMode.SystemPreferred);
+                        }
+                        catch (Exception)
+                        {
+                            await pagedialogservice.DisplayAlertAsync("Alert", "Twitter profile does not exist", "OK");
+                        }
                     }
-                    catch (Exception)
+                    else
                     {
                         await pagedialogservice.DisplayAlertAsync("Alert", "Twitter profile does not exist", "OK");
                     }
