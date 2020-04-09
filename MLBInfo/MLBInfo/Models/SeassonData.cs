@@ -89,11 +89,6 @@ namespace MLBInfo.Models
             });
             Seassons.Add(new Seasson
             {
-                Year = "2000"
-
-            });
-            Seassons.Add(new Seasson
-            {
                 Year = "2019"
             });
             Seassons.Add(new Seasson
