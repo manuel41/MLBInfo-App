@@ -66,8 +66,8 @@ namespace MLBPlayersApp.ViewModels
             {
                 try
                 {
-                    QueryResults results = await ApiService.GetPlayersList(search);
-                    Players = new ObservableCollection<Player>(results.PlayersList as List<Player>);
+                    var results = await ApiService.GetPlayersList(search);
+                    Players = new ObservableCollection<Player>(results as List<Player>);
                 }
                 catch (Exception ex)
                 {
@@ -82,6 +82,7 @@ namespace MLBPlayersApp.ViewModels
             if (await this.HasInternet())
             {
                 var nav = new NavigationParameters();
+                nav.Add("Picture", playerSelected.PlayerPicture);
                 Player = await ApiService.GetPlayerData(playerSelected.PlayerId);
                 nav.Add("Name", Player.NameDisplayFirstLast);
                 nav.Add("TeamName", Player.TeamName);
@@ -93,7 +94,6 @@ namespace MLBPlayersApp.ViewModels
                 nav.Add("Status", Player.Status);
                 nav.Add("TeamId", Player.TeamId);
                 nav.Add("Twitter", Player.TwitterId);
-                nav.Add("Picture", Player.PlayerPicture);
                 await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
             }
         }

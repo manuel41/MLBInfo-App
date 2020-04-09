@@ -26,13 +26,30 @@ namespace MLBPlayersApp.Services
 
         }
 
-        public async Task<QueryResults> GetPlayersList(string search)
+        public async Task<List<Player>> GetPlayersList(string search)
         {
             search = search.Trim().Replace(" ", "_").ToLower();
             HttpClient httpClient = new HttpClient();
             var result = await httpClient.GetStringAsync($"{uri}.search_player_all.bam?sport_code='mlb'&name_part='{search}%25'");
 
-            return JsonConvert.DeserializeObject<SearchQuery>(result)?.SearchPlayerAll?.QueryResults;
+            QueryResults queryResults = JsonConvert.DeserializeObject<SearchQuery>(result)?.SearchPlayerAll?.QueryResults;
+            List<Player> players = queryResults.PlayersList;
+            foreach(Player player in players)
+            {
+                var playerImage = await httpClient.GetStringAsync($"{player_image}{player.NameDisplayFirstLast.Replace(" ", "_")}");
+                PlayerImageData playerImageData = JsonConvert.DeserializeObject<PlayerImageData>(playerImage);
+
+                if (playerImageData.PlayerImage != null)
+                {
+                    player.PlayerPicture = (playerImageData.PlayerImage[0].StrCutout != null) ? playerImageData.PlayerImage[0].StrCutout : playerImageData.PlayerImage[0].StrThumb;
+                }
+                else
+                {
+                    player.PlayerPicture = "ic_account_circle.png";
+                }
+            }
+
+            return players;
         }
 
         public async Task<PlayerData> GetPlayerData(string id)
@@ -41,18 +58,6 @@ namespace MLBPlayersApp.Services
             var result = await httpClient.GetStringAsync($"{uri}.player_info.bam?sport_code='mlb'&player_id={id}");
 
             PlayerData player = JsonConvert.DeserializeObject<PlayerInfoResult>(result)?.PlayerInfo?.QueryResults?.PlayerData;
-
-            var playerImage = await httpClient.GetStringAsync($"{player_image}{player.NameDisplayFirstLast.Replace(" ", "_")}");
-            PlayerImageData playerImageData = JsonConvert.DeserializeObject<PlayerImageData>(playerImage);
-
-            if(playerImageData.PlayerImage != null)
-            {
-                player.PlayerPicture = (playerImageData.PlayerImage[0].StrCutout != null) ? playerImageData.PlayerImage[0].StrCutout : playerImageData.PlayerImage[0].StrThumb;
-            }
-            else
-            {
-                player.PlayerPicture = "ic_account_circle.png";
-            }
 
             return player;
         }
