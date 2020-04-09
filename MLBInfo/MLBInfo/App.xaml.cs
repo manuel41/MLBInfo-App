@@ -22,12 +22,6 @@ namespace MLBInfo
         {
             InitializeComponent();
 
-            // NavigationService.NavigateAsync(new Uri(NavConstants.Home, UriKind.Absolute));
-
-            //Example using Tab
-            //NavigationService.NavigateAsync(new Uri(NavConstants.TabMenu, UriKind.Absolute));
-
-            //Example using Master Detail
             NavigationService.NavigateAsync(new Uri(NavConstants.TabMenu, UriKind.Absolute));
 
         }
