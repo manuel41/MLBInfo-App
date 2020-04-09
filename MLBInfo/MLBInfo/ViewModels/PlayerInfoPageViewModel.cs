@@ -10,20 +10,35 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace MLBInfo.ViewModels
 {
     public class PlayerInfoPageViewModel: BaseViewModel, INotifyPropertyChanged, IInitialize
     {
         public PlayerData Player { get; set; } = new PlayerData();
+        public const string twitter_url = "https://twitter.com/";
 
         public event PropertyChangedEventHandler PropertyChanged;
         public DelegateCommand ViewTeamRosterCommand { get; set; }
+        public DelegateCommand OpenTwitterProfileCommand { get; set; }
         public PlayerInfoPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) : base(navigationService, apiService, pagedialogservice, seassonData)
         {
             ViewTeamRosterCommand = new DelegateCommand(async () =>
             {
                 if (!string.IsNullOrEmpty(Player.TeamId)) await GoToTeamRosterPage();
+            });
+            OpenTwitterProfileCommand = new DelegateCommand(() =>
+            {
+                try
+                {
+                    Browser.OpenAsync(new Uri($"{twitter_url}{Player.TwitterId.Replace("@", "")}"), BrowserLaunchMode.SystemPreferred);
+                }
+                catch (Exception)
+                {
+                    pagedialogservice.DisplayAlertAsync("Alert", "Twitter profile does not exist", "OK");
+                }
             });
         }
 

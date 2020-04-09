@@ -70,6 +70,7 @@ namespace MLBInfo.ViewModels
             if (await this.HasInternet())
             {
                 var nav = new NavigationParameters();
+                nav.Add("Picture", selectedPlayer.PlayerPicture);
                 PlayerData player = await ApiService.GetPlayerData(selectedPlayer.PlayerId);
                 nav.Add("Name", player.NameDisplayFirstLast);
                 nav.Add("TeamName", player.TeamName);
@@ -81,7 +82,6 @@ namespace MLBInfo.ViewModels
                 nav.Add("Status", player.Status);
                 nav.Add("TeamId", player.TeamId);
                 nav.Add("Twitter", player.TwitterId);
-                nav.Add("Picture", player.PlayerPicture);
                 await NavigationService.NavigateAsync(NavConstants.PlayerInfoPage, nav);
             }
         }

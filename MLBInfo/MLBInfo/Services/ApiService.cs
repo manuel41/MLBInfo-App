@@ -81,7 +81,25 @@ namespace MLBPlayersApp.Services
 
             var result = await httpClient.GetStringAsync($"{url1}.roster_40.bam?team_id='{teamId}'");
             var data = JsonConvert.DeserializeObject<TeamRoster>(result);
-            return data?.Roster40.QueryResults.Row;
+            IList<Row> playersList = data?.Roster40.QueryResults.Row;
+
+            foreach (Row player in playersList)
+            {
+                var playerImage = await httpClient.GetStringAsync($"{player_image}{player.NameDisplayFirstLast.Replace(" ", "_")}");
+                PlayerImageData playerImageData = JsonConvert.DeserializeObject<PlayerImageData>(playerImage);
+
+                if (playerImageData.PlayerImage != null)
+                {
+                    player.PlayerPicture = (!string.IsNullOrEmpty(playerImageData.PlayerImage[0].StrCutout)) ? playerImageData.PlayerImage[0].StrCutout : playerImageData.PlayerImage[0].StrThumb;
+                    player.AboutPlayer = (!string.IsNullOrEmpty(playerImageData.PlayerImage[0].StrDescriptionEN)) ? playerImageData.PlayerImage[0].StrDescriptionEN : "No player description available.";
+                }
+                else
+                {
+                    player.PlayerPicture = "ic_account_circle.png";
+                }
+            }
+
+            return playersList;
         }
 
         public async Task<List<Game>> GetUpcomingGames()

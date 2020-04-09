@@ -26,21 +26,6 @@ namespace MLBPlayersApp.ViewModels
 
         public PlayerData Player { get; set; }
 
-        //public Player playerSelected;
-
-        //public Player PlayerSelected
-        //{
-        //    get
-        //    {
-        //        return playerSelected;
-        //    }
-        //    set
-        //    {
-        //        playerSelected = value;
-        //        if (playerSelected != null) ViewPlayerInfoCommand.Execute();
-        //        playerSelected = null;
-        //    }
-        //}
 
         private Player oldPlayer;
 
