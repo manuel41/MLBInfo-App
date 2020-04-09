@@ -34,30 +34,31 @@ namespace MLBTeamsApp.ViewModels
 
         public string Entry { get; set; }
 
-        public Team teamSelected;
+        //public Team teamSelected;
 
+        private Team oldTeam;
         
         public string SecondEntry { get; set; }
         public string SearchEntry { get; set; }
         public DelegateCommand GetTeamInformationCommand { get; set; }
         public DelegateCommand NavigateToTeamRoster { get; set; }
-        public Team TeamSelected
-        {
+        //public Team TeamSelected
+        //{
 
-            get
-            {
-                return teamSelected;
-            }
+        //    get
+        //    {
+        //        return teamSelected;
+        //    }
 
 
-            set
-            {
-                teamSelected = value;
+        //    set
+        //    {
+        //        teamSelected = value;
 
-                if (teamSelected != null) NavigateToTeamRoster.Execute();   
-            }
+        //        if (teamSelected != null) NavigateToTeamRoster.Execute();   
+        //    }
 
-        }
+        //}
 
         Seasson seassonSelected;
         public Seasson SeassonSelected
@@ -127,7 +128,7 @@ namespace MLBTeamsApp.ViewModels
             try
             {
                 var nav = new NavigationParameters();
-                nav.Add("TeamID", TeamSelected.TeamId);
+                nav.Add("TeamID", oldTeam.TeamId);
                 await NavigationService.NavigateAsync(NavConstants.TeamRoster, nav);
             }
             catch (Exception ex)
@@ -137,10 +138,36 @@ namespace MLBTeamsApp.ViewModels
 
         }
 
+        public void HideOrShowTeamInfo(Team team)
+        {
+            if (oldTeam == team)
+            {
+                team.IsVisible = !team.IsVisible;
+                UpdateTeamsList(team);
+            }
+            else
+            {
+                if (oldTeam != null)
+                {
+                    oldTeam.IsVisible = false;
+                    UpdateTeamsList(oldTeam);
+                }
+                team.IsVisible = true;
+                UpdateTeamsList(team);
+
+            }
+            oldTeam = team;
+        }
+
+        private void UpdateTeamsList(Team team)
+        {
+            int index = Teams.IndexOf(team);
+            Teams.Remove(team);
+            Teams.Insert(index, team);
+        }
 
 
 
-
-   }
+    }
 }
 

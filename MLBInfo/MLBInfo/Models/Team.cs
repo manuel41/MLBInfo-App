@@ -204,6 +204,9 @@ namespace MLBTeamsApp.Models
         [JsonIgnore]
         public string Logo { get; set; }
 
+        [JsonIgnore]
+        public bool IsVisible { get; set; } = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 

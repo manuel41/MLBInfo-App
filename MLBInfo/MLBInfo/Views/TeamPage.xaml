@@ -7,10 +7,11 @@
              mc:Ignorable="d"
              x:Class="MLBInfo.Views.TeamPage"
              Title="Teams"
-             BackgroundColor="#ececec">
+             BackgroundColor="#ececec"
+             x:Name="teamsPage">
     <ContentPage.Content>
 
-        <ListView ItemsSource="{Binding Teams}" HasUnevenRows="True" SelectedItem="{Binding TeamSelected, Mode=TwoWay}">
+        <ListView ItemsSource="{Binding Teams}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
             <ListView.Header>
                 <Grid ColumnSpacing="10">
                     <Grid.RowDefinitions>
@@ -31,13 +32,14 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout BackgroundColor="#e1e1e1">
-                            <Label Text="{Binding NameDisplayLong, StringFormat='Team: {0}'}" FontSize="Medium" TextColor="Black"/>
+                            <Label Text="{Binding NameDisplayLong}" FontSize="Medium" FontAttributes="Bold" Style="{StaticResource SecondaryLabel}"/>
                             <Image Source="{Binding Logo}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="180" HeightRequest="180"/>
-                            <Label Text="{Binding State, StringFormat='State: {0}'}" TextColor="Black"/>
-                            <Label Text="{Binding Season, StringFormat='Season: {0}'}" TextColor="Black"/>
-                            <Label Text="{Binding Division, StringFormat='Division: {0}'}" TextColor="Black"/>
-                            <Label Text="{Binding PhoneNumber, StringFormat='Number: {0}'}" TextColor="Black"/>
-                            <Label Text="{Binding WebsiteUrl, StringFormat='WebsiteUrl: {0}'}" TextColor="Black"/>
+                            <Label Text="{Binding State, StringFormat='State: {0}'}" IsVisible="{Binding IsVisible}" Style="{StaticResource SecondaryLabel}"/>
+                            <Label Text="{Binding Season, StringFormat='Season: {0}'}" IsVisible="{Binding IsVisible}" Style="{StaticResource SecondaryLabel}"/>
+                            <Label Text="{Binding Division, StringFormat='Division: {0}'}" IsVisible="{Binding IsVisible}" Style="{StaticResource SecondaryLabel}"/>
+                            <Label Text="{Binding PhoneNumber, StringFormat='Number: {0}'}" IsVisible="{Binding IsVisible}" Style="{StaticResource SecondaryLabel}"/>
+                            <Label Text="{Binding WebsiteUrl, StringFormat='WebsiteUrl: {0}'}" IsVisible="{Binding IsVisible}" Style="{StaticResource SecondaryLabel}"/>
+                            <Button Text="View Current Season Team Roster" Command="{Binding Path=BindingContext.NavigateToTeamRoster, Source={x:Reference teamsPage}}}" Style="{StaticResource ButtonStyle}" Margin="10" IsVisible="{Binding IsVisible}"/>
                             <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" Color="Black"/>
                         </StackLayout>
                     </ViewCell>
