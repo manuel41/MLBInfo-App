@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="MLBInfo.Views.PlayerPage">
+             x:Class="MLBInfo.Views.PlayerPage"
+             BackgroundColor="#ececec">
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Players}" HasUnevenRows="True"
                   SelectedItem="{Binding PlayerSelected, Mode=TwoWay}">
@@ -18,7 +19,9 @@
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Entry Text="{Binding SearchEntry}" Placeholder="Player name" Grid.Column="0" Grid.Row="0"/>
+                    <Entry Text="{Binding SearchEntry}" Placeholder="Player name" Grid.Column="0" Grid.Row="0">
+                  
+                    </Entry>
                     <Button Text="Search" Command="{Binding SearchPlayerCommand}" Grid.Column="0" Grid.Row="1"/>
                 </Grid>
             </ListView.Header>

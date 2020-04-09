@@ -27,6 +27,8 @@ namespace MLBTeamsApp.ViewModels
 
         public IList<Seasson> SeassonsFromViewModelCollector { get; set; }
 
+        SeassonData SeassonD { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -91,6 +93,7 @@ namespace MLBTeamsApp.ViewModels
         }
         public TeamsPageViewModel(INavigationService navigationService, IApiService apiService, PageDialogService pagedialogservice, SeassonData seassonData) : base(navigationService, apiService, pagedialogservice, seassonData)
         {
+            
             SeassonsFromViewModelCollector = seassonData.Seassons;
             GetTeamInformationCommand = new DelegateCommand(async() =>
             {
